@@ -1,0 +1,477 @@
+<html lang="pl"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dla Klienta - PEKAES</title>
+<base href="https://www.pekaes.pl/">
+<meta name="robots" content="index,follow">
+<meta name="description" content="PEKAES to międzynarodowy przewoźnik, operator logistyczny oraz dostawca usług transportowych i spedycyjnych.">
+<meta name="keywords" content="">
+<meta name="generator" content="Contao Open Source CMS">
+<script async="" src="https://ssl.google-analytics.com/ga.js"></script><script async="" src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="/templates/pekaes/jqueryui/jquery-ui-1.10.3.custom.min.css">
+<script type="text/javascript" src="/files/pekaes/cookie.js"></script>
+
+<link rel="stylesheet" href="assets/css/f12e1df5e525.css">
+<script src="assets/js/83cdb3c21429.js"></script>
+<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<script type="text/javascript" src="/files/pekaes/jquery.placeholder.min.js"></script>
+<script src="/files/pekaes/init.js"></script>
+<!--[if lt IE 9]><script src="/files/pekaes/selectivizr-min.js"></script><![endif]-->
+<link rel="stylesheet" href="/files/pekaes/style.css?1536945011">
+<link rel="stylesheet" href="/files/pekaes/print.css" media="print">
+<link rel="stylesheet" href="/files/pekaes/mobile.css" media="handheld, only screen and (max-device-width:480px)">
+<script async="" src="//www.google-analytics.com/analytics.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-42904487-1', 'pekaes.pl');
+  ga('send', 'pageview');
+</script>
+<script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/982723321/?random=1536946436155&amp;cv=9&amp;fst=1536946436155&amp;num=1&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1040&amp;u_aw=1920&amp;u_cd=24&amp;u_his=3&amp;u_tz=120&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;sendb=1&amp;frm=0&amp;url=https%3A%2F%2Fwww.pekaes.pl%2Fpl%2Fdla-klienta.html&amp;ref=https%3A%2F%2Fwww.pekaes.pl%2Fpl%2Fdla-klienta.html&amp;tiba=Dla%20Klienta%20-%20PEKAES&amp;rfmt=3&amp;fmt=4"></script></head>
+<body id="top" class="win chrome webkit ch68 ONECOL STREFA-KLIENTA strefa-klienta noTitle smallContent u6"><div class="_linedModule" style="top: 1501.19px; left: 0px;"></div>
+
+			<header id="header">
+			<div class="wrapper clearfix inside">
+				
+<h1 id="logo"><a href="/pl/" title="PEKAES">PEKAES</a></h1>
+<ul id="change-lang">
+  <li data-lang="pl" class="active"><a href="/pl/start.html">PL</a></li>
+  <li data-lang="en"><a href="/en/start.html">EN</a></li>
+</ul>
+<!-- indexer::stop -->
+<div class="mod_search block">
+
+<form action="pl/wyniki-wyszukiwania.html" method="get">
+<div class="formbody">
+<label for="ctrl_keywords_6" class="invisible">Słowa kluczowe</label>
+<input type="search" name="keywords" id="ctrl_keywords_6" class="text" value="">
+<input type="submit" id="ctrl_submit_6" class="submit" value="Szukaj">
+</div>
+</form>
+
+</div>
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+<nav class="mod_customnav block" id="main-menu">
+
+<a href="pl/dla-klienta.html#skipNavigation1" class="invisible">Pomiń nawigacje</a>
+<!-- test1 -->
+
+<script type="text/javascript">
+jQuery(function () {
+  $(window).on('load resize', function () {
+    if (($(window).height() < 270) && ($(window).width() < 751)){
+      $('#main-menu .top-menu').css({"height": $(window).height()-50});
+      $('#main-menu .top-menu').addClass('overflowY shadowPosition');
+      //$('#main-menu .top-menu.active:after').css({"position": "relative", "float": "right"});
+    } else {
+      $('#main-menu .top-menu').css({"height": "220px"});
+      $('#main-menu .top-menu').removeClass('overflowY shadowPosition');
+      //$('#main-menu .top-menu.active:after').css({"position": "absolute", "float": "left"});
+    }
+  });  
+  $('#nav-toggle').on('click', function(){
+    
+    if ($('#main-menu .top-menu').hasClass('active')){
+      $('#main-menu .top-menu').removeClass('active');
+      $('#main-menu .top-menu').fadeOut(400);
+      
+    } else {
+      $('#main-menu .top-menu').addClass('active');
+      $('#main-menu .top-menu').fadeIn(400);     
+    }
+  });
+
+});
+
+</script>
+<input type="checkbox" id="show-top-menu" role="button">
+<label for="show-top-menu" class="show-top-menu" id="nav-toggle">
+	<span></span>
+</label>
+<ul class="level_1 top-menu" style="height: 220px;">
+<li class="active strefa-klienta noTitle smallContent u6 first"><span class="active strefa-klienta noTitle smallContent u6 first">Dla Klienta</span></li>
+<li class="strefa-przewoznika"><a href="pl/dla-przewoznika.html" title="Dla Przewoźnika" class="strefa-przewoznika">Dla Przewoźnika</a></li>
+<li class="strefa-inwestora"><a href="pl/dla-mediow.html" title="Dla Mediów" class="strefa-inwestora">Dla Mediów</a></li>
+<li class="kariera"><a href="pl/kariera.html" title="Kariera" class="kariera">Kariera</a></li>
+<li class="o-nas"><a href="pl/o-spolce/o-nas.html" title="O nas" class="o-nas">O nas</a></li>
+<li><a href="pl/csr.html" title="CSR">CSR</a></li>
+<li class="kontakt last"><a href="pl/kontakt/dzial-obslugi-klienta.html" title="Kontakt" class="kontakt last">Kontakt</a></li>
+</ul>
+
+<a id="skipNavigation1" class="invisible">&nbsp;</a>
+
+</nav>
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+<div class="mod_breadcrumb block">
+
+<ul>
+  <li class="first"><a href="pl/start.html" title="PEKAES">PEKAES</a></li> 
+  <li class="active last">Dla Klienta</li>
+</ul>
+
+</div>
+<!-- indexer::continue -->
+
+<strong id="fxCatName" class="strefa-klienta">Dla klienta</strong> 
+			</div>
+		</header>
+		
+	<div id="container">
+		
+		<div class="wrapper">
+			<div id="main">
+				<div class="inside">
+					
+<div id="film-promocyjny-strefa-klienta"><div id="rebranding_movie">
+  <p><a href="/pl/dla-klienta/dolacz-do-strefy-klienta.html"><strong>Dołącz do Strefy Klienta</strong></a></p>
+  </div></div>
+<!-- indexer::stop -->
+<div class="mod_login two_column tableform login block">
+
+<h1>Strefa klienta</h1>
+
+<form action="pl/dla-klienta.html" id="tl_login" method="post">
+<div class="formbody">
+<input type="hidden" name="FORM_SUBMIT" value="tl_login">
+<input type="hidden" name="REQUEST_TOKEN" value="243503e688823d9ec82a0f46be3b9157">
+<table>
+  <tbody><tr class="row_0 row_first">
+    <td class="col_0 col_first"><label for="username">Użytkownik</label></td>
+    <td class="col_1 col_last"><input type="text" name="username" id="username" class="text" maxlength="64" value="" placeholder="Wpisz login"></td>
+  </tr>
+  <tr class="row_1">
+    <td class="col_0 col_first"><label for="password">Hasło</label></td>
+    <td class="col_1 col_last"><input type="password" name="password" id="password" class="text password" maxlength="64" value="" placeholder="Wpisz hasło"></td>
+  </tr>
+  <tr class="row_2 row_last">
+    <td class="col_0 col_first">&nbsp;</td>
+    <td class="col_1 col_last"><div class="submit_container"><input type="submit" class="submit" value="Zaloguj"></div></td>
+  </tr>
+</tbody></table>
+</div>
+</form>
+
+</div>
+<!-- indexer::continue -->
+
+<!-- indexer::stop -->
+<a href="#" class="remindPasswordButton" title="Nie pamiętasz hasła?">Nie pamiętasz hasła?</a><div class="mod_lostPassword linedModule tableform block" style="display: none;">
+
+<form action="pl/dla-klienta.html" id="tl_lost_password" method="post">
+<div class="formbody">
+<input type="hidden" name="FORM_SUBMIT" value="tl_lost_password">
+<input type="hidden" name="REQUEST_TOKEN" value="243503e688823d9ec82a0f46be3b9157">
+<table>
+  <tbody><tr class="row_0 row_first even">
+    <td class="col_0 col_first"><label for="ctrl_username" class="mandatory"><span class="invisible">Pole wymagane</span> Nazwa użytkownika<span class="mandatory">*</span></label></td>
+    <td class="col_1 col_last"><input type="text" name="username" id="ctrl_username" class="text mandatory" value="" required="" maxlength="64" placeholder="Wpisz login"></td>
+  </tr>
+  <tr class="row_1 odd">
+    <td class="col_0 col_first"><label for="ctrl_email" class="mandatory"><span class="invisible">Pole wymagane</span> Adres e-mail<span class="mandatory">*</span></label></td>
+    <td class="col_1 col_last"><input type="text" name="email" id="ctrl_email" class="text mandatory" value="" required="" maxlength="255" placeholder="Wpisz e-mail"></td>
+  </tr>
+  <tr class="row_2 row_last even">
+    <td class="col_0 col_first">&nbsp;</td>
+    <td class="col_1 col_last"><div class="submit_container"><input type="submit" class="submit" value="Zażądaj nowego hasła"></div></td>
+  </tr>
+</tbody></table>
+</div>
+</form>
+
+</div>
+<!-- indexer::continue -->
+
+<div class="mod_article block" id="download-ugodesktop">
+  <div class="container">
+    <a href="https://fraktal.com.pl/ugo/content/PEKAESuGOSetup-3.3.90.1.exe">Aktualna wersja programu UGo Desktop</a>
+  	
+  </div>
+  
+  <div class="button">
+    <a href="https://fraktal.com.pl/ugo/content/PEKAESuGOSetup-3.3.90.1.exe">Pobierz</a>
+  </div>
+</div>
+<div class="mod_article content w1 block" id="strefa-klienta">
+
+</div>
+
+<div class="mod_article content w1 block" id="strefa-klienta-pliki-rodo">
+
+</div>
+
+<div class="mod_article block" id="formularz-wyszukiwania-przesylki">
+<form action="" method="post">
+    <div class="title">Śledzenie przesyłek</div>
+    <input type="hidden" name="REQUEST_TOKEN" value="243503e688823d9ec82a0f46be3b9157">
+    <input type="text" name="ShNumber" value="PL0895790004909004" placeholder="Wpisz numer przesyłki">
+    <input type="submit" value="Szukaj">
+</form>
+
+            <dl class="package-details">
+            <dt>Przesyłka nr.</dt>
+            <dd>PL0895790004909004 </dd>
+            
+            <dt>Terminal nadania</dt>
+            <dd>PLBYD</dd>
+            
+            <dt>Kraj nadania</dt>
+            <dd>PL</dd>
+            
+            <dt>Data nadania</dt>
+            <dd>2018-07-25</dd>
+            
+            <dt>Terminal dostawy</dt>
+            <dd>PLBYD</dd>
+            
+            <dt>Kraj dostawy</dt>
+            <dd>PL&nbsp;</dd>
+            
+            <dt>Rodzaj przesyłki</dt>
+            <dd>drobnicowa</dd>
+            
+            
+            <dt>Ilość opakowań</dt>
+            <dd>1</dd>
+            
+            <dt>Status</dt>
+            <dd>przesyłka doręczona </dd>
+            
+            <dt>Miejsce dostarczenia</dt>
+            <dd>87-100, TORUN </dd>
+            
+            <dt>Paczki</dt>
+            <dd>
+                
+                                    <dl class="packages">
+                        <dt>Opakowanie nr.</dt><dd>PL0895790004909004</dd>
+                                                <dt>Czas</dt><dd>2018-07-30 12:10</dd>
+                                                <dt>Status</dt><dd>dostarczono</dd>
+                    </dl>
+                    <hr class="clear">
+                            </dd>
+            
+        </dl>
+        <br class="clear">
+            
+</div>
+
+<div class="mod_article download block" id="dokumenty-do-pobrania">
+
+<section class="ce_accordion linedModule clearfix block">
+
+<div class="toggler">
+ 
+</div>
+
+<div class="accordion"><div>
+
+<section class="ce_accordion w1-4 block">
+
+<div class="toggler">
+Certyfikaty i licencje 
+</div>
+
+<div class="accordion"><div>
+
+<div class="ce_downloads cleanBox block">
+
+<ul>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/PEKAES%20certyfikat%20OCPDiS.pdf" title="PEKAES certyfikat OCPDiS">PEKAES certyfikat OCPDiS <span class="size">(107.2 KiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/media/Swiadectwo%20AEO.pdf" title="Świadectwo AEO">Świadectwo AEO <span class="size">(174.5 KiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/media/Certyfikat%20NIVO-VIHB%20%28wpis%20do%20holenderskiego%20rejestru%20przewo%C5%BAnik%C3%B3w%20wo%C5%BC%C4%85cych%20odpady%29.pdf" title="Certyfikat NIVO-VIHB (wpis do holenderskiego rejestru przewoźników wożących odpady)">Certyfikat NIVO-VIHB (wpis do holenderskiego rejestru przewoźników wożących odpady) <span class="size">(1.2 MiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/Licencja%20na%20wykonywanie%20krajowego%20transportu%20drogowego%20rzeczy.pdf" title="Licencja na wykonywanie krajowego transportu drogowego rzeczy">Licencja na wykonywanie krajowego transportu drogowego rzeczy <span class="size">(305.9 KiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/ISO%2022000%20PL.pdf" title="ISO 22000 PL">ISO 22000 PL <span class="size">(644.9 KiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/ISO%209001%20PL.pdf" title="ISO 9001 PL">ISO 9001 PL <span class="size">(683.5 KiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/PEKAES%20certyfikat%20OC%20dzialalnosci%202018_2019.pdf" title="PEKAES certyfikat OC dzialalnosci 2018 2019">PEKAES certyfikat OC dzialalnosci 2018 2019 <span class="size">(1.5 MiB)</span>
+     </a></li>
+</ul>
+
+</div>
+
+</div></div>
+
+</section>
+
+<section class="ce_accordion w1-4 block">
+
+<div class="toggler">
+Formularze i dokumenty 
+</div>
+
+<div class="accordion"><div>
+
+<div class="ce_downloads cleanBox block">
+
+<ul>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/Wzor%20umowy%20RODO%20PEKAES%20Sp.%20z%20o.%20o.%20-%20KLIENT.pdf" title="Wzor umowy RODO PEKAES Sp. z o. o. - KLIENT">Wzor umowy RODO PEKAES Sp. z o. o. - KLIENT <span class="size">(174.8 KiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/media/Protok%C3%B3%C5%82%20szkody.pdf" title="Protokół szkody">Protokół szkody <span class="size">(180.5 KiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/Formularz%20zgloszenia%20reklamacji.pdf" title="Formularz zgloszenia reklamacji">Formularz zgloszenia reklamacji <span class="size">(300.2 KiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/Formularz%20zlecenia%20Klienta_PEKAES.pdf" title="Formularz zlecenia Klienta PEKAES">Formularz zlecenia Klienta PEKAES <span class="size">(373.4 KiB)</span>
+     </a></li>
+</ul>
+
+</div>
+
+</div></div>
+
+</section>
+
+<section class="ce_accordion w1-4 block">
+
+<div class="toggler">
+Regulaminy i procedury 
+</div>
+
+<div class="accordion"><div>
+
+<div class="ce_downloads cleanBox block">
+
+<ul>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/RODO_Schemat%20przeplywu%20danych%20osobowych_PEKAES.pdf" title="RODO Schemat przeplywu danych osobowych PEKAES">RODO Schemat przeplywu danych osobowych PEKAES <span class="size">(459.3 KiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/media/dla_klienta/rebranding/Ogolny%20Regulamin%20Swiadczenia%20Uslug%20-%20obowiazujacy%20od%201%20wrzesnia%202016.pdf" title="Ogolny Regulamin Swiadczenia Uslug - obowiazujacy od 1 wrzesnia 2016">Ogolny Regulamin Swiadczenia Uslug - obowiazujacy od 1 wrzesnia 2016 <span class="size">(463.4 KiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/media/dla_klienta/Aneks%20nr%201%20do%20ORSU%20PEKAES.pdf" title="Aneks nr 1 do ORSU PEKAES">Aneks nr 1 do ORSU PEKAES <span class="size">(579.4 KiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/Cennik%20oplat%20dodatkowych.pdf" title="Cennik oplat dodatkowych">Cennik oplat dodatkowych <span class="size">(1.4 MiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/Cennik%20uslug%20dodatkowych.pdf" title="Cennik uslug dodatkowych">Cennik uslug dodatkowych <span class="size">(681.9 KiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/Standard%20pakowania%20przesylek%20drobnicowych.pdf" title="Standard pakowania przesylek drobnicowych">Standard pakowania przesylek drobnicowych <span class="size">(1.8 MiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/Instrukcja%20dla%20podwykonawcow%20i%20kierowcow%20swiadczacych%20uslugi%20dla%20Pekaes%20.pdf" title="Instrukcja dla podwykonawcow i kierowcow swiadczacych uslugi dla Pekaes ">Instrukcja dla podwykonawcow i kierowcow swiadczacych uslugi dla Pekaes  <span class="size">(370.9 KiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/Cennik%20drobnicowy%20przesylek%20krajowych%20wazy%20od%2001.03.2016r.pdf" title="Cennik drobnicowy przesyłek krajowych">Cennik drobnicowy przesyłek krajowych <span class="size">(1.7 MiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/Polityka%20Bezpieczenstwa%20Lancucha%20Dostaw_PEKAES.pdf" title="Polityka Bezpieczenstwa Lancucha Dostaw PEKAES">Polityka Bezpieczenstwa Lancucha Dostaw PEKAES <span class="size">(39.5 KiB)</span>
+     </a></li>
+</ul>
+
+</div>
+
+</div></div>
+
+</section>
+
+<section class="ce_accordion w1-4 block">
+
+<div class="toggler">
+Opłata paliwowa i myto 
+</div>
+
+<div class="accordion"><div>
+
+<div class="ce_downloads cleanBox block">
+
+<ul>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/Aktualne%20wskazniki%20oplaty%20drogowej.pdf" title="Aktualne wskazniki oplaty drogowej">Aktualne wskazniki oplaty drogowej <span class="size">(280.1 KiB)</span>
+     </a></li>
+  <li><img src="templates/pekaes/icons/iconPDF.png" width="18" height="18" alt="" class="mime_icon"> <a href="pl/dla-klienta.html?file=files/pekaes/dla_klienta/Aktualne%20wskazniki%20oplaty%20paliwowej%20i%20metodologia%20naliczania_wrzesien.pdf" title="Aktualne wskazniki oplaty paliwowej i metodologia naliczania wrzesien">Aktualne wskazniki oplaty paliwowej i metodologia naliczania wrzesien <span class="size">(474.8 KiB)</span>
+     </a></li>
+</ul>
+
+</div>
+
+</div></div>
+
+</section>
+
+</div></div>
+
+</section>
+
+</div>
+
+<!--
+<a id="fixedFB" href="#" target="_blank" rel="nofollow" title="Znajdź nas na facebooku">&nbsp;</a>
+--> 
+				</div>
+				 
+			</div>
+			
+					</div>	
+	</div>
+	
+	
+			<footer id="footer">
+			<div class="inside wrapper clearfix">
+				
+<div style="position: relative; left: 0px; box-sizing: border-box; margin-bottom: 0px; bottom: 0px; text-align: center;" class="block">
+  <a href="/files/pekaes/media/aeo.pdf" style="text-align: center; margin-right: 30px;"><img src="/files/pekaes/media/AEO_150.png" alt="AEO" style="width: 65px; height: auto; vertical-align: middle;"></a>
+  <a target="_blank" href="http://www.dnb.com.pl/raporthandlowy.aspx?id=808001&amp;lang=pl" rel="nofollow" style="text-align: center; margin-right: 30px;"><img src="/files/pekaes/media/2013goldpl_h.png" style="width: 130px;height: auto; vertical-align: middle;"></a>
+  <a target="_blank" href="http://www.solidnafirma.pl/firma/1635-pekaes-sa" rel="nofollow" title="Solidnafirma"><img alt="Solidnafirma" src="/files/pekaes/media/soldinafirma2014.jpg" style="width: 133px; height: auto; vertical-align: middle;"></a>
+</div>
+<!-- indexer::stop -->
+<nav class="mod_customnav block" id="footer-menu">
+
+<a href="pl/dla-klienta.html#skipNavigation3" class="invisible">Pomiń nawigacje</a>
+
+<ul class="level_1">
+<li class="first"><a href="pl/mapa-serwisu.html" title="Mapa serwisu" class="first">Mapa serwisu</a></li>
+<li><a href="pl/polityka-prywatnosci.html" title="Polityka prywatności">Polityka prywatności</a></li>
+<li><a href="http://intranet.pekaes.pl/" title="Intranet" target="_blank">Intranet</a></li>
+<li><a href="pl/zasady-uzytkowania-serwisu.html" title="Zasady użytkowania serwisu">Zasady użytkowania serwisu</a></li>
+<li class="badanie-satysfakcji last"><a href="pl/badanie-satysfakcji-klienta.html" title="Badanie satysfakcji klienta" class="badanie-satysfakcji last">Badanie satysfakcji klienta</a></li>
+</ul>
+
+<a id="skipNavigation3" class="invisible">&nbsp;</a>
+
+</nav>
+<!-- indexer::continue -->
+
+<div class="copy">
+<!-- dodaj mikroformaty googla -->
+  <span>PEKAES Sp. z o.o. |</span><span> ul. Spedycyjna 1 |</span><span> 05-870 Błonie |</span><span> T +48 22 460 26 26 </span> <!-- <span> F +48 22 460 27 27 |</span><span> <a href="mailto:pekaes@pekaes.pl">pekaes@pekaes.pl</a></span>-->
+</div> 
+			</div>
+		</footer>
+				
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-42904487-1']);
+_gaq.push(['_gat._anonymizeIp']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var ga = document.createElement('script'); ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+				<script src="assets/contao/js/scheduler.js?t=86400" id="cron"></script>
+	
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		var google_conversion_id = 982723321;
+		var google_custom_params = window.google_tag_params;
+		var google_remarketing_only = true;
+		/* ]]> */
+	</script>
+
+	<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+
+	<noscript>
+		<div style="display:inline;">
+		<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/982723321/?value=0&amp;guid=ON&amp;script=0"/>
+		</div>
+	</noscript>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/files/pekaes/kalendarium.js"></script>
+
+</body></html>
