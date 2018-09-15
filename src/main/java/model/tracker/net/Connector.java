@@ -34,7 +34,7 @@ public class Connector {
         conn.method(org.jsoup.Connection.Method.GET);
         Connection.Response response = conn.execute();
 
-        lastPHPSessId = getPhpSessId(response);
+        lastPHPSessId = getPhpSessionId(response);
         lastRequestTokenNumber = getTokenNumber(response.parse());
         return conn;
     }
@@ -46,11 +46,11 @@ public class Connector {
         return conn.post();
     }
 
-    static String getPhpSessId(Connection.Response response) {
+    static private String getPhpSessionId(Connection.Response response) {
         return response.cookie("PHPSESSID");
     }
 
-    static String getTokenNumber(Document document) {
+    static private String getTokenNumber(Document document) {
         return document.getElementById("formularz-wyszukiwania-przesylki").getElementsByAttributeValue("name", "REQUEST_TOKEN").first().attr("value");
     }
 }

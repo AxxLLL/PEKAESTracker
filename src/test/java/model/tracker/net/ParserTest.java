@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class ParserTest {
+class ParserTest {
     private final static File HTML_VALID_PAGE_DATA = new File(ParserTest.class.getResource("/PEKAES_HTML_PL0895790004909004.txt").getFile());
     private final static File HTML_INVALID_SHIPPING_NUMBER = new File(ParserTest.class.getResource("/PEKAES_HTML_INVALID_SHIPPING_NUMBER.txt").getFile());
     private final static File HTML_INVALID_PAGE_DATA = new File(ParserTest.class.getResource("/PEKAES_HTML_INVALID_PAGE.txt").getFile());
@@ -49,12 +49,9 @@ public class ParserTest {
     }
 
     @Test
-    @DisplayName("Parser: Not null, but invalid page HTML code should thrown NullPointerException")
-        /*
-         * NullPointerException is thrown because program search for packages data headers. If there is not found, JSoup (used do parse data) returns null.
-         * */
+    @DisplayName("Parser: Not null, but invalid page HTML code should thrown IllegalStateException")
     void test_2() {
-        assertThatNullPointerException().isThrownBy(() -> new Parser(invalidPageData));
+        assertThatIllegalStateException().isThrownBy(() -> new Parser(invalidPageData));
     }
 
     @Test
@@ -64,9 +61,9 @@ public class ParserTest {
     }
 
     @Test
-    @DisplayName("Parser: Valid shipping number, but without main data section data should thrown NullPointerException")
+    @DisplayName("Parser: Valid shipping number, but without main data section data should thrown IllegalStateException")
     void test_4() {
-        assertThatNullPointerException().isThrownBy(() -> new Parser(getValidShippingNumberWithoutMainData));
+        assertThatIllegalStateException().isThrownBy(() -> new Parser(getValidShippingNumberWithoutMainData));
     }
 
     @Test

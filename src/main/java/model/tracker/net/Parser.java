@@ -10,21 +10,20 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /*
 * Throws:
 *   1) NullPointerException when:
 *       a) Document param in constructor is null
-*       b) HTML DOM code doesn't have required headers ('formularz-wyszukiwania-przesylki' (section for input form) or 'package-details' (section with main data for shipping))
 *       c) When param given for parser methods are null
 *   2) InvalidStateException when
 *       a) Page doesn't have section with package details (for each pallet)
+*       b) HTML DOM code doesn't have required headers ('formularz-wyszukiwania-przesylki' (section for input form), or 'package-details' (section with main data for shipping)) or 'package' (section with details data about each pallet)
+*       c) Element counter for main data is less than 10
+*       d) Element counter for pallet data is not equal to 3
 *   3) IllegalArgumentException when
 *       a) Shipping number is invalid
-*       b) Element counter for main data is less than 10
-*       c) Element counter for pallet data is not equal to 3
-*
 * */
+
 public class Parser {
     private Element packageMainData;
     private Elements detailsPackagesData;
@@ -34,16 +33,16 @@ public class Parser {
     /*
     * Throws:
     *   1) NullPointerException when page html is invalid (ex. site have problems, mysql errors, or simply connection is invalid)
-    *   2) IllegalArgumentException when shipping number is invalid, but input form section is founded. This exception can be thrown when single packages details headers isn't found too.
+    *   2) IllegalStateException when page doesn't have required headers like input form header, main shipping data header or details shipping data headers.
+    *   3) IllegalArgumentException when shipping number is invalid, but input form section is founded. This exception can be thrown when single packages details headers isn't found too.
     * */
     public Parser(Document document) {
         Element formData;
         Preconditions.checkNotNull(document);
-        Preconditions.checkNotNull((formData = getFormData(document)),"Strona nie zawiera wymaganych nagłówków ('" + packagesHeader + "')");
-        Preconditions.checkArgument(!isInvalidPackageNumberHeader(formData), "Numer przesyłki jest niepoprawny");
-        Preconditions.checkNotNull((packageMainData = getShippingMainData(formData)), "Strona nie zawiera wymaganych nagłówków ('" + packagesMainDataHeader + "')");
-        detailsPackagesData = getShippingDetailsData(packageMainData);
-        Preconditions.checkState(detailsPackagesData.size() > 0, "Strona nie zawiera wymaganych nagłówków (szczegóły przesyłki)");
+        Preconditions.checkState(   checkIfPageHasMainInputFormHeader(formData = getFormData(document)),"Strona nie zawiera wymaganych nagłówków ('" + packagesHeader + "')");
+        Preconditions.checkArgument(checkIfShippingNumberIsValid(formData), "Numer przesyłki jest niepoprawny");
+        Preconditions.checkState(   checkIfPageHasMainShippingDataHeader(packageMainData = getShippingMainData(formData)), "Strona nie zawiera wymaganych nagłówków ('" + packagesMainDataHeader + "')");
+        Preconditions.checkState(   checkIfPageHasDetailsShippingDataHeader(detailsPackagesData = getShippingDetailsData(packageMainData)), "Strona nie zawiera wymaganych nagłówków (szczegóły przesyłki)");
     }
 
     /*
@@ -67,14 +66,26 @@ public class Parser {
         List<ShippingDetailsData> listOfPackages = new ArrayList<>();
         for(Element element : detailsPackagesData) {
             Elements elements = element.getElementsByTag("dd");
-            Preconditions.checkState(elements.size() == 3, "(Details - 1) Liczba elementów nie odpowiada obsługiwanemu formatowi danych.");
+            Preconditions.checkState(elements.size() == 3, "(Details) Liczba elementów nie odpowiada obsługiwanemu formatowi danych.");
             listOfPackages.add(new ShippingDetailsData(elements.get(0).text(), elements.get(1).text(), elements.get(2).text()));
         }
         return listOfPackages;
     }
 
-    private boolean isInvalidPackageNumberHeader(Element element) {
-        return element.getElementsByTag("p").size() != 0;
+    private boolean checkIfShippingNumberIsValid(Element element) {
+        return element.getElementsByTag("p").size() == 0;
+    }
+
+    private boolean checkIfPageHasMainInputFormHeader(Element element) {
+        return element != null;
+    }
+
+    private boolean checkIfPageHasMainShippingDataHeader(Element element) {
+        return element != null;
+    }
+
+    private boolean checkIfPageHasDetailsShippingDataHeader(Elements elements) {
+        return elements.size() > 0;
     }
 
     private Element getFormData(Document document) {
