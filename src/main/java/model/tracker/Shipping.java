@@ -9,34 +9,38 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class Shipping {
-    private ShippingMainData mainData;
-    private List<ShippingDetailsData> detailsData;
+    private ShippingMainData mainData = null;
+    private List<ShippingDetailsData> detailsData = null;
     private ShipmentStatus status;
 
     public Shipping(String shNumber) {
         Preconditions.checkNotNull(shNumber);
-        Preconditions.checkArgument(Pattern.compile("^PL[\\d]{16}$").matcher(shNumber).matches());
         try {
-            Parser parser = new Parser(new Connector().getShippingData(shNumber));
+            isValidShippingNumberFormat(shNumber);
+            Parser parser = new Parser(new Connector(shNumber).getShippingData());
             mainData = parser.getMainData();
             detailsData = parser.getDetailsData();
             status = ShipmentStatus.OK;
-        } catch (IllegalStateException e) {
+        } catch(IllegalArgumentException e) {
             status = ShipmentStatus.INVALID_SHIPMENT_NUMBER;
-        } catch(IOException e) {
+        } catch(NullPointerException | IOException e) {
             status = ShipmentStatus.INVALID_DATA_FORMAT;
         }
     }
 
     public ShipmentStatus getShipmentStatus() {
-        return this.status;
+        return status;
     }
 
     public ShippingMainData getShippingMainData() {
-        return this.mainData;
+        return mainData;
     }
 
     public List<ShippingDetailsData> getShippingDetailsData() {
-        return this.detailsData;
+        return detailsData;
+    }
+
+    private void isValidShippingNumberFormat(String shNumber) {
+        if(!Pattern.compile("^PL[\\d]{16}$").matcher(shNumber).matches()) throw new IllegalArgumentException("Niepoprawny format numeru przesyłki");
     }
 }
