@@ -1,8 +1,8 @@
 package model.tracker.net;
 
 import com.google.common.base.Preconditions;
-import model.tracker.ShippingDetailsData;
-import model.tracker.ShippingMainData;
+import model.tracker.shipping.ShippingDetailsData;
+import model.tracker.shipping.ShippingMainData;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;

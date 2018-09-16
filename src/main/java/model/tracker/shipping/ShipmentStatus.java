@@ -1,4 +1,4 @@
-package model.tracker;
+package model.tracker.shipping;
 
 public enum ShipmentStatus {
     OK,

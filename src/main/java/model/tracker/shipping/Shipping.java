@@ -1,4 +1,4 @@
-package model.tracker;
+package model.tracker.shipping;
 
 import com.google.common.base.Preconditions;
 import model.tracker.net.Connector;

@@ -4,10 +4,9 @@ import model.datasalo.loader.JSonLoader;
 import model.datasalo.loader.Loader;
 import model.datasalo.saver.JSonSaver;
 import model.datasalo.saver.Saver;
-import model.tracker.Shipping;
+import model.tracker.shipping.ShippingManager;
 
 import java.io.IOException;
-import java.util.List;
 
 public class SaveLoad {
     private static final String FILE_NAME = "shippingdata.json";
@@ -17,11 +16,12 @@ public class SaveLoad {
     public SaveLoad() throws IOException {
     }
 
-    public void saveData(List<Shipping> listOfShipping) throws IOException {
-        saver.save(listOfShipping);
+    public void saveData(ShippingManager manager) throws IOException {
+        saver.save(manager.getAll());
     }
 
-    public List<Shipping> loadData() {
-        return loader.load();
+    public void loadData(ShippingManager manager) {
+        manager.clear();
+        manager.addAll(loader.load());
     }
 }

@@ -1,6 +1,6 @@
 package model.datasalo.loader;
 
-import model.tracker.Shipping;
+import model.tracker.shipping.Shipping;
 
 import java.nio.file.Path;
 import java.util.List;

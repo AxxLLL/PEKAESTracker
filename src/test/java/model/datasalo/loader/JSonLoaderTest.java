@@ -2,10 +2,10 @@ package model.datasalo.loader;
 
 import model.datasalo.saver.JSonSaver;
 import model.datasalo.saver.Saver;
-import model.tracker.ShipmentStatus;
-import model.tracker.Shipping;
-import model.tracker.ShippingDetailsData;
-import model.tracker.ShippingMainData;
+import model.tracker.shipping.ShipmentStatus;
+import model.tracker.shipping.Shipping;
+import model.tracker.shipping.ShippingDetailsData;
+import model.tracker.shipping.ShippingMainData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
