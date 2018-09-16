@@ -77,6 +77,6 @@ public class ShippingMainData {
                 "Delivery type: " + deliveryType + System.lineSeparator() +
                 "Amount of packages: " + amountOfPackages + System.lineSeparator() +
                 "Delivery status: " + deliveryStatus + System.lineSeparator() +
-                "Delivery place: " + deliveryPlace + System.lineSeparator();
+                "Delivery place: " + deliveryPlace;
     }
 }
