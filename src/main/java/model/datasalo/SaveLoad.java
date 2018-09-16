@@ -4,7 +4,7 @@ import model.datasalo.loader.JSonLoader;
 import model.datasalo.loader.Loader;
 import model.datasalo.saver.JSonSaver;
 import model.datasalo.saver.Saver;
-import model.tracker.shipping.ShippingManager;
+import model.shipment.shp.ShippingManager;
 
 import java.io.IOException;
 

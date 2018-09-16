@@ -1,4 +1,4 @@
-package model.tracker.shipping;
+package model.shipment.shp;
 
 public class ShippingDetailsData {
     private final String packageNumber;

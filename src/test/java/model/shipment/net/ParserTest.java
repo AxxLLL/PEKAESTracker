@@ -1,7 +1,7 @@
-package model.tracker.net;
+package model.shipment.net;
 
-import model.tracker.shipping.ShippingDetailsData;
-import model.tracker.shipping.ShippingMainData;
+import model.shipment.shp.ShippingDetailsData;
+import model.shipment.shp.ShippingMainData;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.BeforeEach;
@@ -55,19 +55,19 @@ class ParserTest {
     }
 
     @Test
-    @DisplayName("Parser: Valid HTML DOM data, but for invalid shipping number should throw InvalidArgumentException")
+    @DisplayName("Parser: Valid HTML DOM data, but for invalid shp number should throw InvalidArgumentException")
     void test_3() {
         assertThatIllegalArgumentException().isThrownBy(() -> new Parser(invalidSHippingNumberData));
     }
 
     @Test
-    @DisplayName("Parser: Valid shipping number, but without main data section data should thrown IllegalStateException")
+    @DisplayName("Parser: Valid shp number, but without main data section data should thrown IllegalStateException")
     void test_4() {
         assertThatIllegalStateException().isThrownBy(() -> new Parser(getValidShippingNumberWithoutMainData));
     }
 
     @Test
-    @DisplayName("Parser: Valid shipping number, but without details section data should thrown IllegalStateException")
+    @DisplayName("Parser: Valid shp number, but without details section data should thrown IllegalStateException")
     void test_5() {
         assertThatIllegalStateException().isThrownBy(() -> new Parser(getValidShippingNumberWithoutDetailsData));
     }

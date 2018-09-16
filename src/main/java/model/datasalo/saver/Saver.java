@@ -1,6 +1,6 @@
 package model.datasalo.saver;
 
-import model.tracker.shipping.Shipping;
+import model.shipment.shp.Shipping;
 
 import java.io.IOException;
 import java.nio.file.Path;

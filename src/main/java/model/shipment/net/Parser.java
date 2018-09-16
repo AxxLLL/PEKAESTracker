@@ -1,8 +1,8 @@
-package model.tracker.net;
+package model.shipment.net;
 
 import com.google.common.base.Preconditions;
-import model.tracker.shipping.ShippingDetailsData;
-import model.tracker.shipping.ShippingMainData;
+import model.shipment.shp.ShippingDetailsData;
+import model.shipment.shp.ShippingMainData;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -17,7 +17,7 @@ import java.util.List;
 *       c) When param given for parser methods are null
 *   2) InvalidStateException when
 *       a) Page doesn't have section with package details (for each pallet)
-*       b) HTML DOM code doesn't have required headers ('formularz-wyszukiwania-przesylki' (section for input form), or 'package-details' (section with main data for shipping)) or 'package' (section with details data about each pallet)
+*       b) HTML DOM code doesn't have required headers ('formularz-wyszukiwania-przesylki' (section for input form), or 'package-details' (section with main data for shp)) or 'package' (section with details data about each pallet)
 *       c) Element counter for main data is less than 10
 *       d) Element counter for pallet data is not equal to 3
 *   3) IllegalArgumentException when
@@ -33,8 +33,8 @@ public class Parser {
     /*
     * Throws:
     *   1) NullPointerException when page html is invalid (ex. site have problems, mysql errors, or simply connection is invalid)
-    *   2) IllegalStateException when page doesn't have required headers like input form header, main shipping data header or details shipping data headers.
-    *   3) IllegalArgumentException when shipping number is invalid, but input form section is founded. This exception can be thrown when single packages details headers isn't found too.
+    *   2) IllegalStateException when page doesn't have required headers like input form header, main shp data header or details shp data headers.
+    *   3) IllegalArgumentException when shp number is invalid, but input form section is founded. This exception can be thrown when single packages details headers isn't found too.
     * */
     public Parser(Document document) {
         Element formData;

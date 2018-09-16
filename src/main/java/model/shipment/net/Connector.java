@@ -1,4 +1,4 @@
-package model.tracker.net;
+package model.shipment.net;
 
 import com.google.common.base.Preconditions;
 import org.jsoup.Connection;

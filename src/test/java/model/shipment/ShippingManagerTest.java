@@ -1,8 +1,8 @@
-package model.tracker;
+package model.shipment;
 
-import model.tracker.shipping.ShipmentStatus;
-import model.tracker.shipping.Shipping;
-import model.tracker.shipping.ShippingManager;
+import model.shipment.shp.ShipmentStatus;
+import model.shipment.shp.Shipping;
+import model.shipment.shp.ShippingManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,7 +39,7 @@ class ShippingManagerTest {
         assertThat(manager.get(0).getShippingNumber()).isEqualTo("TEST");
     }
 
-    @DisplayName("add: Try to add this same shipping number to list should throw IllegalArgumentException")
+    @DisplayName("add: Try to add this same shp number to list should throw IllegalArgumentException")
     @Test
     void test_3() {
         Shipping shipping_1 = new Shipping("TEST", ShipmentStatus.INVALID_DATA_FORMAT, null, null);
@@ -49,7 +49,7 @@ class ShippingManagerTest {
         assertThatIllegalArgumentException().isThrownBy(() -> manager.add(shipping_2));
     }
 
-    @DisplayName("addAll: Try to add this same shipping number to list should throw IllegalArgumentException")
+    @DisplayName("addAll: Try to add this same shp number to list should throw IllegalArgumentException")
     @Test
     void test_4() {
         addDefaultShipments();
@@ -145,7 +145,7 @@ class ShippingManagerTest {
         assertThatNullPointerException().isThrownBy(() -> manager.remove(shp));
     }
 
-    @DisplayName("remove: Valid shipping object should remove items from list")
+    @DisplayName("remove: Valid shp object should remove items from list")
     @Test
     void test_15() {
         addDefaultShipments();
@@ -154,7 +154,7 @@ class ShippingManagerTest {
         assertThat(manager.getAll()).containsExactlyInAnyOrder(shipping_1, shipping_3);
     }
 
-    @DisplayName("remove: Valid shipping object, but not at list should do nothing with list")
+    @DisplayName("remove: Valid shp object, but not at list should do nothing with list")
     @Test
     void test_16() {
         addDefaultShipments();
@@ -163,7 +163,7 @@ class ShippingManagerTest {
         assertThat(manager.getAll()).containsExactlyInAnyOrder(shipping_1, shipping_2, shipping_3, shipping_4);
     }
 
-    @DisplayName("remove: Valid shipping object should remove items from list")
+    @DisplayName("remove: Valid shp object should remove items from list")
     @Test
     void test_17() {
         addDefaultShipments();
@@ -172,7 +172,7 @@ class ShippingManagerTest {
         assertThat(manager.getAll()).containsExactlyInAnyOrder(shipping_1, shipping_3);
     }
 
-    @DisplayName("remove: Valid shipping but not at list should do nothing")
+    @DisplayName("remove: Valid shp but not at list should do nothing")
     @Test
     void test_18() {
         addDefaultShipments();

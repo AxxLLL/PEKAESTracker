@@ -1,8 +1,8 @@
-package model.tracker.shipping;
+package model.shipment.shp;
 
 import com.google.common.base.Preconditions;
-import model.tracker.net.Connector;
-import model.tracker.net.Parser;
+import model.shipment.net.Connector;
+import model.shipment.net.Parser;
 
 import java.io.IOException;
 import java.util.List;

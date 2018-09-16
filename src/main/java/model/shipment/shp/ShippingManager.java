@@ -1,4 +1,4 @@
-package model.tracker.shipping;
+package model.shipment.shp;
 
 import com.google.common.base.Preconditions;
 

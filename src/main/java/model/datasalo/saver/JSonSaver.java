@@ -2,10 +2,10 @@ package model.datasalo.saver;
 
 import com.google.common.base.Preconditions;
 import model.datasalo.syspath.SystemPath;
-import model.tracker.shipping.ShipmentStatus;
-import model.tracker.shipping.Shipping;
-import model.tracker.shipping.ShippingDetailsData;
-import model.tracker.shipping.ShippingMainData;
+import model.shipment.shp.ShipmentStatus;
+import model.shipment.shp.Shipping;
+import model.shipment.shp.ShippingDetailsData;
+import model.shipment.shp.ShippingMainData;
 
 import java.io.IOException;
 import java.nio.file.Files;

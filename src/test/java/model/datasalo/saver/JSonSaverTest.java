@@ -1,9 +1,9 @@
 package model.datasalo.saver;
 
-import model.tracker.shipping.ShipmentStatus;
-import model.tracker.shipping.Shipping;
-import model.tracker.shipping.ShippingDetailsData;
-import model.tracker.shipping.ShippingMainData;
+import model.shipment.shp.ShipmentStatus;
+import model.shipment.shp.Shipping;
+import model.shipment.shp.ShippingDetailsData;
+import model.shipment.shp.ShippingMainData;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
