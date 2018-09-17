@@ -7,16 +7,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.*;
 
 class ShippingManagerTest {
     private ShippingManager manager;
-    private Shipping shipping_1 = new Shipping("TEST_A", ShipmentStatus.INVALID_DATA_FORMAT, null, null);
-    private Shipping shipping_2 = new Shipping("TEST_B", ShipmentStatus.INVALID_DATA_FORMAT, null, null);
-    private Shipping shipping_3 = new Shipping("TEST_C", ShipmentStatus.INVALID_DATA_FORMAT, null, null);
-    private Shipping shipping_4 = new Shipping("TEST_D", ShipmentStatus.INVALID_DATA_FORMAT, null, null);
+    private Shipping shipping_1 = new Shipping("TEST_A", "", ShipmentStatus.INVALID_DATA_FORMAT, LocalDateTime.now(), null, null);
+    private Shipping shipping_2 = new Shipping("TEST_B", "", ShipmentStatus.INVALID_DATA_FORMAT, LocalDateTime.now(), null, null);
+    private Shipping shipping_3 = new Shipping("TEST_C", "", ShipmentStatus.INVALID_DATA_FORMAT, LocalDateTime.now(), null, null);
+    private Shipping shipping_4 = new Shipping("TEST_D", "", ShipmentStatus.INVALID_DATA_FORMAT, LocalDateTime.now(), null, null);
 
     @BeforeEach
     void beforeEach() {
@@ -32,7 +33,7 @@ class ShippingManagerTest {
     @DisplayName("add/get/size: Check if valid shipment is added to list")
     @Test
     void test_2() {
-        Shipping shipping = new Shipping("TEST", ShipmentStatus.INVALID_DATA_FORMAT, null, null);
+        Shipping shipping = new Shipping("TEST", "", ShipmentStatus.INVALID_DATA_FORMAT, LocalDateTime.now(), null, null);
         manager.add(shipping);
         assertThat(manager.size()).isOne();
         assertThat(manager.get(0)).isEqualTo(shipping);
@@ -42,8 +43,8 @@ class ShippingManagerTest {
     @DisplayName("add: Try to add this same shp number to list should throw IllegalArgumentException")
     @Test
     void test_3() {
-        Shipping shipping_1 = new Shipping("TEST", ShipmentStatus.INVALID_DATA_FORMAT, null, null);
-        Shipping shipping_2 = new Shipping("TEST", ShipmentStatus.INVALID_DATA_FORMAT, null, null);
+        Shipping shipping_1 = new Shipping("TEST", "", ShipmentStatus.INVALID_DATA_FORMAT, LocalDateTime.now(), null, null);
+        Shipping shipping_2 = new Shipping("TEST", "", ShipmentStatus.INVALID_DATA_FORMAT, LocalDateTime.now(), null, null);
 
         manager.add(shipping_1);
         assertThatIllegalArgumentException().isThrownBy(() -> manager.add(shipping_2));
@@ -53,8 +54,8 @@ class ShippingManagerTest {
     @Test
     void test_4() {
         addDefaultShipments();
-        Shipping shipping_5 = new Shipping("TEST_A", ShipmentStatus.INVALID_DATA_FORMAT, null, null); //This row should not be added
-        Shipping shipping_6 = new Shipping("TEST_B", ShipmentStatus.INVALID_DATA_FORMAT, null, null); //This row should not be added
+        Shipping shipping_5 = new Shipping("TEST_A", "", ShipmentStatus.INVALID_DATA_FORMAT, LocalDateTime.now(), null, null); //This row should not be added
+        Shipping shipping_6 = new Shipping("TEST_B", "", ShipmentStatus.INVALID_DATA_FORMAT, LocalDateTime.now(), null, null); //This row should not be added
 
         manager.addAll(Arrays.asList(shipping_1, shipping_2, shipping_3, shipping_4));
         assertThat(manager.size()).isEqualTo(4);
@@ -158,7 +159,7 @@ class ShippingManagerTest {
     @Test
     void test_16() {
         addDefaultShipments();
-        Shipping shipping_5 = new Shipping("TEST_D", ShipmentStatus.INVALID_DATA_FORMAT, null, null);
+        Shipping shipping_5 = new Shipping("TEST_D", "", ShipmentStatus.INVALID_DATA_FORMAT, LocalDateTime.now(), null, null);
         manager.remove(shipping_5);
         assertThat(manager.getAll()).containsExactlyInAnyOrder(shipping_1, shipping_2, shipping_3, shipping_4);
     }

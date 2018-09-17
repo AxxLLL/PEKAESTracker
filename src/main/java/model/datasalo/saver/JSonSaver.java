@@ -61,7 +61,7 @@ public class JSonSaver implements Saver {
     }
 
     private String parseInvalidShippingDataToJSonLine(Shipping shipping) {
-        return String.format(System.lineSeparator() + "{\"Status\":\"Invalid\", \"Number\":\"%s\"},", shipping.getShippingNumber());
+        return String.format(System.lineSeparator() + "{\"Status\":\"Invalid\", \"Number\":\"%s\", \"Title\":\"%s\", \"LastUpdateTime\":\"%s\"},", shipping.getShippingNumber(), shipping.getTitle(), shipping.getLastUpdateTime());
     }
 
     private String parseShippingDataToJSonLine(Shipping shipping) {
@@ -69,6 +69,8 @@ public class JSonSaver implements Saver {
         return String.format(System.lineSeparator() + "{" +
                         "\"Status\":\"Valid\"," +
                         "\"Number\":\"%s\"," +
+                        "\"Title\":\"%s\"," +
+                        "\"LastUpdateTime\":\"%s\"," +
                         "\"Data\": {" +
                         "\"postingTerminal\" : \"%s\"," +
                         "\"postingCountry\" : \"%s\"," +
@@ -82,6 +84,8 @@ public class JSonSaver implements Saver {
                         "\"details\" : [%s]" +
                         "}},",
                         shipping.getShippingNumber(),
+                        shipping.getTitle(),
+                        shipping.getLastUpdateTime(),
                         mainData.getPostingTerminal(),
                         mainData.getPostingCountry(),
                         mainData.getPostingData(),

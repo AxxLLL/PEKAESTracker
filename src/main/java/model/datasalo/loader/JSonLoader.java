@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +65,8 @@ public class JSonLoader implements Loader {
     private Shipping readDataForShipping(JSONObject object) {
         ShipmentStatus status = getShipmentStatusByName(object.getString("Status"));
         String packageNumber = object.getString("Number");
+        String title = object.getString("Title");
+        LocalDateTime lastUpdateTime = LocalDateTime.parse(object.getString("LastUpdateTime"));
         ShippingMainData mainData = null;
         List<ShippingDetailsData> detailsListData = null;
         if(status == ShipmentStatus.OK) {
@@ -71,7 +74,7 @@ public class JSonLoader implements Loader {
             mainData = getShippingMainData(packageNumber, jsonMainData);
             detailsListData = getShippingDetailsData(jsonMainData.getJSONArray("details"));
         }
-        return new Shipping(packageNumber, status, mainData, detailsListData);
+        return new Shipping(packageNumber, title, status, lastUpdateTime, mainData, detailsListData);
     }
 
     private ShipmentStatus getShipmentStatusByName(String name) {

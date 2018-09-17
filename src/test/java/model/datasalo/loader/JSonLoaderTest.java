@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -82,7 +83,7 @@ class JSonLoaderTest {
         detailsData.add(new ShippingDetailsData(prefix + "_details_2_" + "packageNumber", prefix + "_details_2_" + "time", prefix + "_details_2_" + "status"));
         detailsData.add(new ShippingDetailsData(prefix + "_details_3_" + "packageNumber", prefix + "_details_3_" + "time", prefix + "_details_3_" + "status"));
 
-        return new Shipping(number, status, mainData, detailsData);
+        return new Shipping(number, "", status, LocalDateTime.now(), mainData, detailsData);
     }
 
 }
