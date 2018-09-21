@@ -1,11 +1,13 @@
 package controller;
 
+import controller.manager.ControllerManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 
 public class MainShippingDataController {
+
     @FXML private TitledPane mainDataTitledPane;
     @FXML private TextField shippingNumberInputLock;
     @FXML private TextField shipmentTitleInput;
@@ -20,6 +22,10 @@ public class MainShippingDataController {
     @FXML private Label deliveryTerminalLabel;
     @FXML private Label deliveryCountryLabel;
 
+    public MainShippingDataController() {
+        ControllerManager.add(this);
+    }
+
     @FXML
     private void refreshShipmentData() {
 
@@ -28,6 +34,10 @@ public class MainShippingDataController {
     @FXML
     private void deleteShipmentData() {
 
+    }
+
+    public TitledPane getPane() {
+        return this.mainDataTitledPane;
     }
 }
 

@@ -53,7 +53,7 @@ public class Parser {
     public ShippingMainData getMainData() {
         Preconditions.checkNotNull(packageMainData);
         Elements elements = packageMainData.getElementsByTag("dd");
-        Preconditions.checkState(elements.size() >= 11, "(Main) Liczba elementów nie odpowiada obsługiwanemu formatowi danych.");
+        Preconditions.checkState(elements.size() >= 11, "(MainTest) Liczba elementów nie odpowiada obsługiwanemu formatowi danych.");
         return new ShippingMainData(elements.get(0).text(), elements.get(1).text(), elements.get(2).text(), elements.get(3).text(), elements.get(4).text(), elements.get(5).text(), elements.get(6).text(), elements.get(7).text(), elements.get(8).text(), elements.get(9).text());
     }
 
