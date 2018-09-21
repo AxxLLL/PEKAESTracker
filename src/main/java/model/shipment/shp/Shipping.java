@@ -18,14 +18,16 @@ public class Shipping {
     private LocalDateTime lastUpdateTime;
 
     public Shipping(String shippingNumber, String title, ShipmentStatus status, LocalDateTime lastUpdateTime, ShippingMainData mainData, List<ShippingDetailsData> detailsData) {
-        Preconditions.checkNotNull(shippingNumber);
-        Preconditions.checkNotNull(status);
-        Preconditions.checkNotNull(title);
-        Preconditions.checkNotNull(lastUpdateTime);
+        Preconditions.checkNotNull(shippingNumber, "Numer przesyłki jest nullem");
+        Preconditions.checkNotNull(status, "Status przesyłki jest nullem");
+        Preconditions.checkNotNull(title, "Tytuł przesyłki jest nullem");
+        Preconditions.checkNotNull(lastUpdateTime, "Data ostatniego odświeżenia jest nullem");
+
         if(status == ShipmentStatus.OK) {
-            Preconditions.checkNotNull(mainData);
-            Preconditions.checkNotNull(detailsData);
+            Preconditions.checkNotNull(mainData, "Dane główne przesyłki są nullem (Status przesyłki 'OK')");
+            Preconditions.checkNotNull(detailsData, "Dane szczegółowe przesyłki są nullem (Status przesyłki 'OK')");
         }
+
         this.shippingNumber = shippingNumber;
         this.status = status;
         this.title = title;
@@ -39,10 +41,12 @@ public class Shipping {
     }
 
     public Shipping(String shNumber, String title) {
-        Preconditions.checkNotNull(shNumber);
-        Preconditions.checkNotNull(title);
+        Preconditions.checkNotNull(shNumber, "Numer przesyłki jest nullem");
+        Preconditions.checkNotNull(title, "Tytuł musi być określony (ShpNr: " + shNumber + ")");
         lastUpdateTime = LocalDateTime.now();
         shippingNumber = shNumber;
+        this.title = title;
+
         try {
             Preconditions.checkArgument(isValidShippingNumberFormat(shNumber), "Niepoprawny numer przesyłki");
             Parser parser = new Parser(new Connector(shNumber).getShippingData());
@@ -78,6 +82,16 @@ public class Shipping {
 
     public List<ShippingDetailsData> getShippingDetailsData() {
         return status == ShipmentStatus.OK ? detailsData : null;
+    }
+
+    public void copyDataFromShipping(Shipping shipping) {
+        Preconditions.checkArgument(shipping.getShippingNumber().equals(this.shippingNumber), "Nie można nadpisywać danych numerów przesyłki.");
+
+        this.status = shipping.getShipmentStatus();
+        this.title = shipping.getTitle();
+        this.lastUpdateTime = shipping.getLastUpdateTime();
+        this.mainData = shipping.getShippingMainData();
+        this.detailsData = shipping.getShippingDetailsData();
     }
 
     private boolean isValidShippingNumberFormat(String shNumber) {
