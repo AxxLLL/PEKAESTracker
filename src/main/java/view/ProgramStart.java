@@ -1,5 +1,6 @@
 package view;
 
+import controller.InputFormController;
 import controller.ShippingTableViewController;
 import controller.manager.ControllerManager;
 import javafx.application.Application;
@@ -29,6 +30,7 @@ public class ProgramStart extends Application {
     public void stop() throws IOException {
         SaveLoad saver = new SaveLoad();
         saver.saveData(shippingManager);
+        ((InputFormController)ControllerManager.get(InputFormController.class)).hideMessage();
         //tracker.stop();
     }
 

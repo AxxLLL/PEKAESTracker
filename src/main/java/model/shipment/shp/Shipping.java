@@ -66,7 +66,7 @@ public class Shipping {
         this.detailsData = shipping.getDetailsData();
     }
 
-    private boolean isValidShippingNumberFormat(String shNumber) {
+    public static boolean isValidShippingNumberFormat(String shNumber) {
         return (Pattern.compile("^PL[\\d]{16}$").matcher(shNumber).matches());
     }
 
