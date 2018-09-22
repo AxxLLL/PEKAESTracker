@@ -1,5 +1,6 @@
 package view;
 
+import controller.AutomaticRefreshController;
 import controller.InputFormController;
 import controller.ShippingTableViewController;
 import controller.manager.ControllerManager;
@@ -18,9 +19,9 @@ public class ProgramStart extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        tracker = new Tracker(shippingManager);
         SaveLoad loader = new SaveLoad();
         loader.loadData(shippingManager);
-        //tracker = new Tracker(shippingManager);
         StartFX.start(primaryStage);
 
         ((ShippingTableViewController) ControllerManager.get(ShippingTableViewController.class)).refreshTable();
@@ -31,10 +32,14 @@ public class ProgramStart extends Application {
         SaveLoad saver = new SaveLoad();
         saver.saveData(shippingManager);
         ((InputFormController)ControllerManager.get(InputFormController.class)).hideMessage();
-        //tracker.stop();
+        tracker.stop();
     }
 
     public static ShippingManager getManager() {
         return shippingManager;
+    }
+
+    public static Tracker getTracker() {
+        return tracker;
     }
 }

@@ -11,7 +11,6 @@
          <children>
             <TableView fx:id="detailsDataColumn" layoutX="87.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <columns>
-                  <TableColumn fx:id="numColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Lp." />
                   <TableColumn fx:id="shippingNumColumn" prefWidth="75.0" text="Numer paczki" />
                   <TableColumn fx:id="timeColumn" prefWidth="260.99999237060547" text="Czas" />
                   <TableColumn fx:id="detailsStatusColumn" prefWidth="445.0" text="Status" />

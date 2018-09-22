@@ -5,8 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.shipment.shp.Shipping;
 import view.ProgramStart;
@@ -40,6 +39,12 @@ public class ShippingTableViewController {
 
         lastUpdateColumn.setCellValueFactory(shipment -> new SimpleStringProperty(getLastUpdateTimeAsString(shipment)));
         lastUpdateColumn.setStyle("-fx-alignment: center;");
+
+        trackingTable.getSelectionModel().selectedItemProperty().addListener((observable -> {
+            Shipping shp = trackingTable.getSelectionModel().getSelectedItem();
+            ((MainShippingDataController)ControllerManager.get(MainShippingDataController.class)).updateShippingInfo(shp);
+            ((DetailsShippingDataController)ControllerManager.get(DetailsShippingDataController.class)).updateShippingInfo(shp);
+        }));
     }
 
     public void refreshTable() {
@@ -61,6 +66,6 @@ public class ShippingTableViewController {
 
     private String getLastUpdateTimeAsString(TableColumn.CellDataFeatures<Shipping, String> shipment) {
         LocalDateTime time = shipment.getValue().getLastUpdateTime();
-        return time.format(DateTimeFormatter.ofPattern("hh:mm  MM dd yyyy"));
+        return time.format(DateTimeFormatter.ofPattern("MM/dd/yyyy  (HH:mm)"));
     }
 }

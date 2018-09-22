@@ -6,6 +6,9 @@ import model.shipment.shp.ShipmentStatus;
 import model.shipment.shp.Shipping;
 import model.shipment.shp.ShippingDetailsData;
 import model.shipment.shp.ShippingMainData;
+import model.tracker.Tracker;
+import model.tracker.TrackerState;
+import view.ProgramStart;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -46,8 +49,10 @@ public class JSonSaver implements Saver {
 
     private byte[] prepareDataToWrite(List<Shipping> listOfShipments) {
         StringBuilder builder = new StringBuilder(1024);
-        builder.append("{\"shipmentData\":[");
-        builder.append(System.lineSeparator());
+        builder.append("{");
+        builder.append(getProgramSettings());
+        builder.append(", ");
+        builder.append("\"shipmentData\":[");
 
         listOfShipments.forEach(line -> {
             if(line.getStatus() == ShipmentStatus.OK) builder.append(parseShippingDataToJSonLine(line));
@@ -55,8 +60,8 @@ public class JSonSaver implements Saver {
         });
 
         if(builder.length() > 1) builder.deleteCharAt(builder.length() - 1);
-        builder.append(System.lineSeparator());
-        builder.append("]}");
+        builder.append("]");
+        builder.append("}");
         return builder.toString().getBytes();
     }
 
@@ -114,5 +119,10 @@ public class JSonSaver implements Saver {
         );
         builder.deleteCharAt(builder.length() - 1);
         return builder.toString();
+    }
+
+    private String getProgramSettings() {
+        Tracker tracker = ProgramStart.getTracker();
+        return String.format("\"autoUpdate\":%b, \"autoUpdateTime\":%d, \"checkIfFinished\":%b", tracker.getState() != TrackerState.DISABLED, tracker.getTimeBetweenRefreshes(), tracker.isCheckIfFinished());
     }
 }

@@ -8,6 +8,7 @@ import model.shipment.shp.ShippingDetailsData;
 import model.shipment.shp.ShippingMainData;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import view.ProgramStart;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -32,7 +33,9 @@ public class JSonLoader implements Loader {
     public List<Shipping> load() {
         List<Shipping> shippingList = new ArrayList<>();
         try {
-            JSONArray mainObject = new JSONObject(readFileAsString(pathToFile)).getJSONArray("shipmentData");
+            JSONObject object = new JSONObject(readFileAsString(pathToFile));
+            getProgramSettings(object);
+            JSONArray mainObject = object.getJSONArray("shipmentData");
             for(int i = 0; i < mainObject.length(); i ++) {
                 shippingList.add(readDataForShipping(mainObject.getJSONObject(i)));
             }
@@ -107,6 +110,12 @@ public class JSonLoader implements Loader {
             detailsDataList.add(new ShippingDetailsData(row.getString("packageNumber"), row.getString("time"), row.getString("status")));
         }
         return detailsDataList;
+    }
+
+    private void getProgramSettings(JSONObject object) {
+        if(!object.isNull("autoUpdate")) ProgramStart.getTracker().disableAutoTracking(object.getBoolean("autoUpdate"));
+        if(!object.isNull("autoUpdateTime")) ProgramStart.getTracker().setTimeBetweenRefreshes(object.getInt("autoUpdateTime"));
+        if(!object.isNull("checkIfFinished")) ProgramStart.getTracker().setCheckIfFinished(object.getBoolean("checkIfFinished"));
     }
 }
 

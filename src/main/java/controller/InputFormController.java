@@ -25,29 +25,19 @@ public class InputFormController {
         String shNumber = shippingNumberInput.getText();
         String title = titleInput.getText();
 
-        if(shNumber.length() == 0) {
-            showMessage("red", "Niepodano numeru przesyłki");
-        } else if(!Shipping.isValidShippingNumberFormat(shNumber)) {
-            showMessage("red", "Niepoprawny numer przesyłki");
+        if(!Shipping.isValidShippingNumberFormat(shNumber)) {
+            showErrorMessage("Niepoprawny numer przesyłki");
         } else {
             try {
                 ProgramStart.getManager().add(new Shipping(shNumber, title));
                 ((ShippingTableViewController)ControllerManager.get(ShippingTableViewController.class)).refreshTable();
-                showMessage("green", "Dodano przesyłkę do listy");
+                shippingNumberInput.clear();
+                titleInput.clear();
+                showConfirmMessage("Dodano przesyłkę do listy");
             } catch (IllegalArgumentException e) {
-                showMessage("red", e.getMessage());
+                showErrorMessage(e.getMessage());
             }
         }
-    }
-
-    private void showMessage(String color, String message) {
-        addStatusLabel.setStyle("-fx-text-fill: "+color+";");
-        addStatusLabel.setText(message);
-        addStatusLabel.setVisible(true);
-
-        stopTimerIfExists();
-        timer = new Timer();
-        timer.schedule(new ShowMessageTimer(), 4000);
     }
 
     public void hideMessage() {
@@ -62,11 +52,27 @@ public class InputFormController {
         }
     }
 
-    private class ShowMessageTimer extends TimerTask {
+    private void showErrorMessage(String message) {
+        showMessage("red", message);
+    }
 
+    private void showConfirmMessage(String message) {
+        showMessage("green", message);
+    }
+
+    private void showMessage(String color, String message) {
+        addStatusLabel.setStyle("-fx-text-fill: "+color+";");
+        addStatusLabel.setText(message);
+        addStatusLabel.setVisible(true);
+
+        stopTimerIfExists();
+        timer = new Timer();
+        timer.schedule(new ShowMessageTimer(), 4000);
+    }
+
+    private class ShowMessageTimer extends TimerTask {
         @Override
         public void run() {
-            System.out.println("Hide");
             hideMessage();
         }
     }

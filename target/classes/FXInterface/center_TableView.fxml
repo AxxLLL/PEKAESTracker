@@ -2,12 +2,19 @@
 
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<TableView fx:id="trackingTable" prefHeight="247.0" prefWidth="791.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShippingTableViewController">
-   <columns>
-      <TableColumn fx:id="shippingNumberColumn" prefWidth="137.0" text="Numer przesyłki" />
-      <TableColumn fx:id="titleColumn" prefWidth="379.0" text="Tytuł" />
-      <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="130.0" text="Status" />
-      <TableColumn fx:id="lastUpdateColumn" minWidth="0.0" prefWidth="143.0" text="Ost. aktualizacja" />
-   </columns>
-</TableView>
+
+<AnchorPane prefHeight="330.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShippingTableViewController">
+   <children>
+      <TableView fx:id="trackingTable" prefHeight="256.0" prefWidth="800.0" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+         <columns>
+            <TableColumn fx:id="shippingNumberColumn" prefWidth="137.0" text="Numer przesyłki" />
+            <TableColumn fx:id="titleColumn" prefWidth="379.0" text="Tytuł" />
+            <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="130.0" text="Status" />
+            <TableColumn fx:id="lastUpdateColumn" minWidth="0.0" prefWidth="143.0" text="Ost. aktualizacja" />
+         </columns>
+      </TableView>
+      <fx:include source="center_AutomaticRefresh.fxml" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+   </children>
+</AnchorPane>
