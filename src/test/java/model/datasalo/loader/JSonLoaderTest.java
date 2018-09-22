@@ -55,15 +55,15 @@ class JSonLoaderTest {
         assertThat(listWithData.size()).isEqualTo(4);
         Shipping firstRow = listWithData.get(0);
         assertThat(firstRow.getShippingNumber()).isEqualTo("TEST_A");
-        assertThat(firstRow.getShipmentStatus()).isEqualTo(ShipmentStatus.OK);
+        assertThat(firstRow.getStatus()).isEqualTo(ShipmentStatus.OK);
         //IDK why data is not equal...
         // assertThat(firstRow.getShippingMainData()).isEqualTo("Package num.: TEST_A" + System.lineSeparator() + "Posting terminal: lineA_postingTerminal" + System.lineSeparator() + "Posting country: lineA_postingCountry" + System.lineSeparator() + "Posting data: lineA_postingData" + System.lineSeparator() + "Delivery terminal: lineA_deliveryTerminal" + System.lineSeparator() + "Delivery country: lineA_deliveryCountry" + System.lineSeparator() + "Delivery type: lineA_deliveryType" + System.lineSeparator() + "Amount of packages: lineA_amountOfPackages" + System.lineSeparator() + "Delivery status: lineA_deliveryStatus" + System.lineSeparator() + "Delivery place: lineA_deliveryPlace");
 
         Shipping rowWithInvalidData = listWithData.get(1);
         assertThat(rowWithInvalidData.getShippingNumber()).isEqualTo("TEST_B");
-        assertThat(rowWithInvalidData.getShipmentStatus()).isEqualTo(ShipmentStatus.INVALID_DATA_FORMAT);
-        assertThat(rowWithInvalidData.getShippingMainData()).isNull();
-        assertThat(rowWithInvalidData.getShippingDetailsData()).isNull();
+        assertThat(rowWithInvalidData.getStatus()).isEqualTo(ShipmentStatus.INVALID_DATA_FORMAT);
+        assertThat(rowWithInvalidData.getMainData()).isNull();
+        assertThat(rowWithInvalidData.getDetailsData()).isNull();
     }
 
     private Shipping createShippingDataToTestWithPrefix(String number, String prefix, ShipmentStatus status) {

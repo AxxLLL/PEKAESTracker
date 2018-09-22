@@ -49,9 +49,9 @@ public class ShippingTableViewController {
     }
 
     private String getStatusValueAsString(TableColumn.CellDataFeatures<Shipping, String> shipment) {
-        switch(shipment.getValue().getShipmentStatus()) {
+        switch(shipment.getValue().getStatus()) {
             case OK: {
-                return shipment.getValue().getShippingMainData() == null ? "Błąd (2)" : shipment.getValue().getShippingMainData().getDeliveryStatus();
+                return shipment.getValue().getMainData() == null ? "Błąd (2)" : shipment.getValue().getMainData().getDeliveryStatus();
             }
             case INVALID_SHIPMENT_NUMBER: return "Niepoprawny numer przesyłki";
             case INVALID_DATA_FORMAT: return "Niepoprawny format danych";

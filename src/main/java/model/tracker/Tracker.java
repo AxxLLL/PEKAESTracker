@@ -27,24 +27,17 @@ public class Tracker implements Runnable {
     @Override
     public void run() {
         while(active) {
-            System.out.println("TEST");
             try {
                 List<Shipping> notCheckedShipments = new ArrayList<>(shippingManager.getAll());
                 notCheckedShipments.removeAll(checkedShipments);
+
                 if (notCheckedShipments.size() > 0) {
-                    System.out.println("Checking " + notCheckedShipments.get(0).getShippingNumber());
                     updateShipmentData(notCheckedShipments.get(0));
                     updateCheckedShipmentsList(notCheckedShipments);
-                } else System.out.println("Nothing to check...");
-
-                if (notCheckedShipments.size() == 0) {
-                    System.out.println("Waiting " + TIME_WAIT_BEFORE_NEXT_ALL_SHIPMENTS_CHECK + " minutes to next refresh...");
-                    checkedShipments.clear();
-                    Thread.sleep(TIME_WAIT_BEFORE_NEXT_ALL_SHIPMENTS_CHECK  * 60 * 1000);
-                } else {
-                    System.out.println("Waiting " + TIME_WAIT_BEFORE_NEXT_SHIPMENT_CHECK + " seconds to check next...");
-                    Thread.sleep(TIME_WAIT_BEFORE_NEXT_SHIPMENT_CHECK * 1000);
                 }
+
+                Thread.sleep((notCheckedShipments.size() == 0 ? (TIME_WAIT_BEFORE_NEXT_ALL_SHIPMENTS_CHECK  * 60) : TIME_WAIT_BEFORE_NEXT_SHIPMENT_CHECK) * 1000);
+
             } catch (InterruptedException ignored) { }
         }
     }
@@ -62,4 +55,5 @@ public class Tracker implements Runnable {
         checkedShipments.add(notCheckedShipments.get(0));
         notCheckedShipments.remove(0);
     }
+
 }

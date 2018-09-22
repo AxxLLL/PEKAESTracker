@@ -50,7 +50,7 @@ public class JSonSaver implements Saver {
         builder.append(System.lineSeparator());
 
         listOfShipments.forEach(line -> {
-            if(line.getShipmentStatus() == ShipmentStatus.OK) builder.append(parseShippingDataToJSonLine(line));
+            if(line.getStatus() == ShipmentStatus.OK) builder.append(parseShippingDataToJSonLine(line));
             else builder.append(parseInvalidShippingDataToJSonLine(line));
         });
 
@@ -65,7 +65,7 @@ public class JSonSaver implements Saver {
     }
 
     private String parseShippingDataToJSonLine(Shipping shipping) {
-        ShippingMainData mainData = shipping.getShippingMainData();
+        ShippingMainData mainData = shipping.getMainData();
         return String.format(System.lineSeparator() + "{" +
                         "\"Status\":\"Valid\"," +
                         "\"Number\":\"%s\"," +
@@ -95,7 +95,7 @@ public class JSonSaver implements Saver {
                         mainData.getAmountOfPackages(),
                         mainData.getDeliveryStatus(),
                         mainData.getDeliveryPlace(),
-                        getDetailsShippingDataInJSonFormat(shipping.getShippingDetailsData())
+                        getDetailsShippingDataInJSonFormat(shipping.getDetailsData())
                 );
     }
 
