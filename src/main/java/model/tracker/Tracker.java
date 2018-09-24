@@ -10,91 +10,39 @@ import model.shipment.shp.ShippingManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tracker implements Runnable {
+public class Tracker extends TrackerRunner implements Runnable {
 
-    private static int TIME_WAIT_BEFORE_NEXT_SHIPMENT_CHECK = 2; // in seconds
-    @Getter @Setter
-    private boolean checkIfFinished = false;
-    @Getter
-    private int timeBetweenRefreshes = 300; //in seconds - 5 min
+
+    @Getter @Setter private boolean checkFinishedShipments = false;
+    @Getter private int timeBetweenRefreshes = 300; //in seconds - 5 min
     @Getter private int restTime;
-    private Thread thread;
-    @Getter private TrackerState state = TrackerState.DISABLED;
-    private ShippingManager shippingManager;
+    @Getter private TrackerState trackerState = TrackerState.DISABLED;
+
     private List<Shipping> checkedShipments = new ArrayList<>();
     private boolean active;
 
     public Tracker(ShippingManager manager) {
-        Preconditions.checkNotNull(manager);
-        this.shippingManager = manager;
-        active = true;
-        thread = new Thread(this,"AutoRefresh thread");
-        thread.start();
+        super(manager);
     }
 
-    @Override
-    public void run() {
-        while(active) {
-            try {
-                //System.out.println("Status: " + state + " | Rest time: " + restTime);
-                boolean fast = false;
-                if(timerTick() == TrackerState.UPDATING) {
-                    List<Shipping> notCheckedShipments = new ArrayList<>(shippingManager.getAll());
-                    notCheckedShipments.removeAll(checkedShipments);
-
-                    if(notCheckedShipments.size() > 0) {
-                        fast = updateShipmentData(notCheckedShipments.get(0));
-                        updateCheckedShipmentsList(notCheckedShipments);
-                    } else {
-                        updatingEnd();
-                    }
-                }
-
-                if(!fast) Thread.sleep(state == TrackerState.UPDATING ? TIME_WAIT_BEFORE_NEXT_SHIPMENT_CHECK * 1000 : 1000);
-            } catch (InterruptedException ignored) { }
-        }
+    public void enableAutoTracking(boolean enable) {
+        changeTrackerState(enable ? TrackerState.WAITING_FOR_UPDATE : TrackerState.DISABLED);
     }
 
-    synchronized public void stop() {
-        this.active = false;
-        this.state = TrackerState.DISABLED;
-        thread.interrupt();
+    public void setTimeBetweenRefreshes(int seconds) {
+        if(seconds > 0) timeBetweenRefreshes = seconds;
     }
 
-    public void disableAutoTracking(boolean disable) {
-        state = disable ? TrackerState.DISABLED : TrackerState.WAITING_FOR_UPDATE;
-        updatingEnd();
-    }
-
-    public void setTimeBetweenRefreshes(int time) {
-        if(time > 0) timeBetweenRefreshes = time;
-    }
-
-    public void forceUpdate() {
-        state = TrackerState.UPDATING;
-    }
-
-    public int getCheckedSize() {
+    public int getCheckedShipmentsListSize() {
         return checkedShipments.size();
     }
 
-    private TrackerState timerTick() {
-        if(state != TrackerState.DISABLED && state != TrackerState.UPDATING) {
-            if (--restTime <= 0) {
-                state = TrackerState.UPDATING;
-            }
-        }
-        return state;
-    }
 
-    private void updatingEnd() {
-        checkedShipments.clear();
-        restTime = timeBetweenRefreshes;
-        if(state == TrackerState.UPDATING) state = TrackerState.WAITING_FOR_UPDATE;
-    }
+
+
 
     private boolean updateShipmentData(Shipping shp) {
-        if(!checkIfFinished) {
+        if(!checkFinishedShipments) {
             if(shp.getStatus() == ShipmentStatus.OK && shp.getMainData().getDeliveryStatus().equals("przesyłka doręczona")) {
                 return true;
             }
@@ -103,9 +51,17 @@ public class Tracker implements Runnable {
         return false;
     }
 
-    private void updateCheckedShipmentsList(List<Shipping> notCheckedShipments) {
-        checkedShipments.add(notCheckedShipments.get(0));
-        notCheckedShipments.remove(0);
+    private void prepareBeforeWaitingForUpdate() {
+        restTime = timeBetweenRefreshes;
+    }
+
+    private void prepareBeforeUpdate() {
+        restTime = 0;
+        checkedShipments.clear();
+    }
+
+    private void prepareBeforeDisable() {
+
     }
 
 }

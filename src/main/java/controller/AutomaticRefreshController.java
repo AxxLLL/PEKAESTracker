@@ -29,31 +29,20 @@ public class AutomaticRefreshController {
 
     @FXML
     private void initialize() {
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(MIN_SPINNER_VALUE, MAX_SPINNER_VALUE, Math.floorDiv(tracker.getTimeBetweenRefreshes(), 60));
-        refreshTime.setValueFactory(valueFactory);
-        refreshTime.valueProperty().addListener(e -> spinnerValueChanged());
-
-        checkIfFinishedCheckBox.setSelected(!tracker.isCheckIfFinished());
-        automaticRefreshCheckBox.setSelected(tracker.getState() == TrackerState.DISABLED);
-        onAutomaticRefreshStatusChange();
-
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), (e) -> updateTimerText()));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+        initlalizeAutoRefreshTimeSpinner(Math.floorDiv(tracker.getTimeBetweenRefreshes(), 60));
+        initializeCheckFinishedShipmentsCheckBox(!tracker.isCheckIfFinished());
+        initializeAutoRefreshCheckBox(tracker.getState() == TrackerState.DISABLED);
+        startAutoRefreshTimer();
     }
 
     @FXML
     private void onAutomaticRefreshStatusChange() {
-        if(automaticRefreshCheckBox.isSelected()) {
-            enableAutomaticRefresh();
-        } else {
-            disableAutomaticRefresh();
-        }
+        enableAutoRefresh(automaticRefreshCheckBox.isSelected());
     }
 
     @FXML
     private void refreshAll() {
-        ProgramStart.getTracker().forceUpdate();
+        tracker.forceUpdate();
     }
 
     @FXML
@@ -61,20 +50,38 @@ public class AutomaticRefreshController {
         tracker.setCheckIfFinished(!checkIfFinishedCheckBox.isSelected());
     }
 
-    private void disableAutomaticRefresh() {
-        refreshTime.setDisable(true);
-        refreshAllButton.setDisable(true);
-        ProgramStart.getTracker().disableAutoTracking(true);
+    private void initlalizeAutoRefreshTimeSpinner(int initial) {
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(MIN_SPINNER_VALUE, MAX_SPINNER_VALUE, initial);
+        refreshTime.setValueFactory(valueFactory);
+        refreshTime.valueProperty().addListener(e -> spinnerValueChanged());
     }
 
-    private void enableAutomaticRefresh() {
-        refreshTime.setDisable(false);
-        refreshAllButton.setDisable(false);
-        ProgramStart.getTracker().disableAutoTracking(false);
+    private void initializeCheckFinishedShipmentsCheckBox(boolean select) {
+        checkIfFinishedCheckBox.setSelected(select);
+    }
+
+    private void initializeAutoRefreshCheckBox(boolean select) {
+        automaticRefreshCheckBox.setSelected(select);
+        onAutomaticRefreshStatusChange();
+    }
+
+    /*
+    * This is only interface update timer. Real timer is in Tracker class.
+    * */
+    private void startAutoRefreshTimer() {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), (e) -> updateTimerText()));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
+
+    private void enableAutoRefresh(boolean enable) {
+        refreshTime.setDisable(enable);
+        refreshAllButton.setDisable(enable);
+        tracker.disableAutoTracking(enable);
     }
 
     private void spinnerValueChanged() {
-        ProgramStart.getTracker().setTimeBetweenRefreshes(refreshTime.getValue() * 60);
+        tracker.setTimeBetweenRefreshes(refreshTime.getValue() * 60);
     }
 
     private void updateTimerText() {
