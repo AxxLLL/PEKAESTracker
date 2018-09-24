@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="65.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AutomaticRefreshController">
+<AnchorPane prefHeight="65.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AutomaticRefreshController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="5.0" maxWidth="340.0" prefHeight="65.0" prefWidth="308.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -44,7 +43,7 @@
                   </Label>
                </children>
             </HBox>
-            <CheckBox fx:id="checkIfFinishedCheckBox" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#onCheckFinishedShipmentsStatusChange" prefHeight="17.0" prefWidth="259.0" selected="true" text="Niesprawdzaj statusu doręczonych przesyłek">
+            <CheckBox fx:id="checkIfFinishedCheckBox" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#onCheckFinishedShipmentsStatusChange" prefHeight="17.0" prefWidth="271.0" selected="true" text="Niesprawdzaj statusu doręczonych przesyłek">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>

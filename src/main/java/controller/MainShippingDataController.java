@@ -117,7 +117,7 @@ public class MainShippingDataController {
     }
 
     private String getFormattedTime(Shipping shipping) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd  (HH:mm:ss)");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd  (HH:mm)");
         return shipping.getLastUpdateTime().format(formatter);
     }
 

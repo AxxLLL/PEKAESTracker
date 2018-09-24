@@ -54,12 +54,13 @@ public class JSonSaver implements Saver {
         builder.append(", ");
         builder.append("\"shipmentData\":[");
 
-        listOfShipments.forEach(line -> {
-            if(line.getStatus() == ShipmentStatus.OK) builder.append(parseShippingDataToJSonLine(line));
-            else builder.append(parseInvalidShippingDataToJSonLine(line));
-        });
-
-        if(builder.length() > 1) builder.deleteCharAt(builder.length() - 1);
+        if(listOfShipments.size() > 0) {
+            listOfShipments.forEach(line -> {
+                if (line.getStatus() == ShipmentStatus.OK) builder.append(parseShippingDataToJSonLine(line));
+                else builder.append(parseInvalidShippingDataToJSonLine(line));
+            });
+        }
+        if(builder.charAt(builder.length() - 1) != '[' && builder.charAt(builder.length() - 1) != '}') builder.deleteCharAt(builder.length() - 1);
         builder.append("]");
         builder.append("}");
         return builder.toString().getBytes();

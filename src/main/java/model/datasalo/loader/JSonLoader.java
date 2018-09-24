@@ -33,11 +33,14 @@ public class JSonLoader implements Loader {
     public List<Shipping> load() {
         List<Shipping> shippingList = new ArrayList<>();
         try {
-            JSONObject object = new JSONObject(readFileAsString(pathToFile));
-            getProgramSettings(object);
-            JSONArray mainObject = object.getJSONArray("shipmentData");
-            for(int i = 0; i < mainObject.length(); i ++) {
-                shippingList.add(readDataForShipping(mainObject.getJSONObject(i)));
+            String reader = readFileAsString(pathToFile);
+            if(reader.startsWith("{") && reader.endsWith("}")) {
+                JSONObject object = new JSONObject(reader);
+                getProgramSettings(object);
+                JSONArray mainObject = object.getJSONArray("shipmentData");
+                for (int i = 0; i < mainObject.length(); i++) {
+                    shippingList.add(readDataForShipping(mainObject.getJSONObject(i)));
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
