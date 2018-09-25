@@ -23,7 +23,7 @@
          </rowConstraints>
          <children>
             <TextField fx:id="shippingNumberInput" alignment="CENTER" prefHeight="35.0" prefWidth="190.0" promptText="PLxxxxxxxxxxxxx" />
-            <Button mnemonicParsing="false" onAction="#onShipmentAddedToTracking" prefHeight="35.0" prefWidth="138.0" text="Śledź" GridPane.columnIndex="2" />
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#onShipmentAddedToTracking" prefHeight="35.0" prefWidth="138.0" text="Śledź" GridPane.columnIndex="2" />
             <TextField fx:id="titleInput" alignment="CENTER" layoutX="10.0" layoutY="13.0" prefHeight="35.0" prefWidth="300.0" promptText="Tytuł" GridPane.columnIndex="1" />
          </children>
          <VBox.margin>

@@ -86,6 +86,7 @@ public class Tracker implements Runnable {
     }
 
     private boolean updateShipmentData(Shipping shp, boolean force) {
+        if(shp.getStatus() == ShipmentStatus.INVALID_SHIPMENT_NUMBER) return false;
         if(!checkFinishedShipments && !force) {
             if(shp.getStatus() == ShipmentStatus.OK && shp.getMainData().getDeliveryStatus().equals("przesyłka doręczona")) {
                 return false;

@@ -2,8 +2,10 @@ package controller;
 
 import controller.manager.ControllerManager;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.shipment.shp.ShipmentStatus;
 import model.shipment.shp.Shipping;
 import view.ProgramStart;
 
@@ -14,6 +16,7 @@ public class InputFormController {
     @FXML private TextField shippingNumberInput;
     @FXML private TextField titleInput;
     @FXML private Label addStatusLabel;
+    @FXML private Button addButton;
     private Timer timer;
 
     public InputFormController() {
@@ -26,14 +29,19 @@ public class InputFormController {
         String title = titleInput.getText();
 
         if(!Shipping.isValidShippingNumberFormat(shNumber)) {
-            showErrorMessage("Niepoprawny numer przesyłki");
+            showErrorMessage("Niepoprawny format numeru przesyłki");
         } else {
             try {
-                ProgramStart.getManager().add(new Shipping(shNumber, title));
-                ((ShippingTableViewController)ControllerManager.get(ShippingTableViewController.class)).refreshTable();
-                shippingNumberInput.clear();
-                titleInput.clear();
-                showConfirmMessage("Dodano przesyłkę do listy");
+                Shipping shp = new Shipping(shNumber, title);
+                if(shp.getStatus() == ShipmentStatus.INVALID_SHIPMENT_NUMBER) {
+                    showErrorMessage("Nieodnaleziono przesyłki o podanym numerze na stronie przewoźnika");
+                } else {
+                    ProgramStart.getManager().add(shp);
+                    ((ShippingTableViewController)ControllerManager.get(ShippingTableViewController.class)).refreshTable();
+                    shippingNumberInput.clear();
+                    titleInput.clear();
+                    showConfirmMessage("Dodano przesyłkę do listy");
+                }
             } catch (IllegalArgumentException e) {
                 showErrorMessage(e.getMessage());
             }

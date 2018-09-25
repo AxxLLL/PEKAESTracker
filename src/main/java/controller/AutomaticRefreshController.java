@@ -81,7 +81,7 @@ public class AutomaticRefreshController {
     }
 
     private void spinnerValueChanged() {
-        tracker.setTimeBetweenRefreshes(refreshTime.getValue() * 60);
+        tracker.setTimeBetweenRefreshes(refreshTime.getValue());
     }
 
     private void updateTimerText() {
