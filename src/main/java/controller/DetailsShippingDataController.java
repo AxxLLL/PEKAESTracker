@@ -10,7 +10,6 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.shipment.shp.Shipping;
 import model.shipment.shp.ShippingDetailsData;
-import view.ProgramStart;
 
 public class DetailsShippingDataController {
     @FXML private TitledPane detailsDataTitledPane;
@@ -49,7 +48,7 @@ public class DetailsShippingDataController {
         }
     }
 
-    private void clearTableData() {
+    void clearTableData() {
         detailsDataColumn.setItems(null);
     }
 }

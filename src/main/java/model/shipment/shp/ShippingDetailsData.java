@@ -2,7 +2,6 @@ package model.shipment.shp;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.ToString;
 
 @AllArgsConstructor
 public class ShippingDetailsData {

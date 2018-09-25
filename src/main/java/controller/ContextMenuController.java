@@ -4,18 +4,14 @@ import controller.manager.ControllerManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContextMenu;
-import javafx.scene.control.CustomMenuItem;
-import javafx.scene.control.Menu;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import model.shipment.shp.Shipping;
-import model.shipment.shp.ShippingDetailsData;
 import view.ProgramStart;
 
 public class ContextMenuController {
     private ShippingTableViewController tableViewController = ((ShippingTableViewController)ControllerManager.get(ShippingTableViewController.class));
     private Shipping shipping;
-    @FXML private Menu menu;
     @FXML private ContextMenu contextMenu;
     @FXML private CheckBox shippingNumberCheckBox;
     @FXML private CheckBox titleCheckBox;
@@ -56,6 +52,8 @@ public class ContextMenuController {
     private void deleteShipmentFromList() {
         ProgramStart.getManager().remove(shipping);
         tableViewController.refreshTable();
+        ((MainShippingDataController)ControllerManager.get(MainShippingDataController.class)).setMainDataToDefault();
+        ((DetailsShippingDataController)ControllerManager.get(DetailsShippingDataController.class)).clearTableData();
     }
 
     public ContextMenu getContextMenu() {

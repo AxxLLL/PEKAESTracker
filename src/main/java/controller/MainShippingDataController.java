@@ -89,7 +89,7 @@ public class MainShippingDataController {
         deliveryCountryLabel.setText(mainData == null ? "Brak" : mainData.getDeliveryCountry());
     }
 
-    private void setMainDataToDefault() {
+    void setMainDataToDefault() {
         this.shipping = null;
         shippingNumberInputLock.setText("");
         shipmentTitleInput.setText("");

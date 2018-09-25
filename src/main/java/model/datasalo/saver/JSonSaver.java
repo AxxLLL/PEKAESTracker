@@ -7,7 +7,6 @@ import model.shipment.shp.Shipping;
 import model.shipment.shp.ShippingDetailsData;
 import model.shipment.shp.ShippingMainData;
 import model.tracker.Tracker;
-import model.tracker.TrackerState;
 import view.ProgramStart;
 
 import java.io.IOException;
