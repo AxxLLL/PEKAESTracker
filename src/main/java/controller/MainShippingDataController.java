@@ -108,7 +108,14 @@ public class MainShippingDataController {
 
     private String getStatusMessage(Shipping shipping) {
         switch(shipping.getStatus()) {
-            case OK: return shipping.getMainData() == null ? "Błąd (null)" : shipping.getMainData().getDeliveryStatus();
+            case OK: {
+                String msg = "Błąd (null)";
+                if(shipping.getMainData() != null) {
+                    msg = shipping.getMainData().getDeliveryStatus();
+                    msg = msg.substring(0,1).toUpperCase() + msg.substring(1);
+                }
+                return msg;
+            }
             case INVALID_DATA_FORMAT: return "Niepoprawny format danych";
             case INVALID_SHIPMENT_NUMBER: return "Niepoprawny numer przesyłki";
         }

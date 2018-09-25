@@ -48,7 +48,14 @@ public class ShippingTableViewController {
 
     String getStatusValueAsString(Shipping shipping) {
         switch(shipping.getStatus()) {
-            case OK: return shipping.getMainData() == null ? "Błąd (2)" : shipping.getMainData().getDeliveryStatus();
+            case OK: {
+                String msg = "Błąd (2)";
+                if(shipping.getMainData() != null) {
+                    msg = shipping.getMainData().getDeliveryStatus();
+                    msg = msg.substring(0,1).toUpperCase() + msg.substring(1);
+                }
+                return msg;
+            }
             case INVALID_SHIPMENT_NUMBER: return "Niepoprawny numer przesyłki";
             case INVALID_DATA_FORMAT: return "Niepoprawny format danych";
             default: return "Błąd (1)";
