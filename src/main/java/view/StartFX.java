@@ -2,7 +2,6 @@ package view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,11 +15,19 @@ public class StartFX {
         primaryStage.setResizable(false);
         primaryStage.setTitle(ProgramData.PROGRAM_NAME + " v" + ProgramData.VERSION);
         primaryStage.show();
-        new FXMLLoader(StartFX.class.getResource("/FXInterface/contextMenu.fxml")).load();
+        loadPopupMenuFXML();
+        loadCSS();
     }
 
     public static Scene getMainScene() {
         return mainScene;
     }
 
+    private static void loadPopupMenuFXML() throws IOException {
+        new FXMLLoader(StartFX.class.getResource("/FXInterface/contextMenu.fxml")).load();
+    }
+
+    private static void loadCSS() {
+        mainScene.getStylesheets().add(String.valueOf(StartFX.class.getResource("/CSS/main.css")));
+    }
 }

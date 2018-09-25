@@ -17,8 +17,8 @@ public class Tracker implements Runnable {
     private ShippingManager shippingManager;
     private List<Shipping> checkedShipments = new ArrayList<>();
     private boolean active;
-    @Getter private TrackerState trackerState;
-    @Getter private int timeToNextUpdate;
+    @Getter private TrackerState trackerState = TrackerState.WAITING_FOR_UPDATE;
+    @Getter private int timeToNextUpdate = 10;
     @Getter private int timeBetweenRefreshes = 300; //in seconds - 5 min
     @Getter @Setter private boolean checkFinishedShipments = false;
 

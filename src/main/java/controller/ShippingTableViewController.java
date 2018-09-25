@@ -1,6 +1,7 @@
 package controller;
 
 import controller.manager.ControllerManager;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,11 +9,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Popup;
 import model.shipment.shp.Shipping;
 import view.ProgramStart;
 import view.StartFX;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -45,11 +48,11 @@ public class ShippingTableViewController {
 
         trackingTable.getSelectionModel().selectedItemProperty().addListener((observable -> {
             Shipping shp = trackingTable.getSelectionModel().getSelectedItem();
-            showPopupMenu();
             ((MainShippingDataController)ControllerManager.get(MainShippingDataController.class)).updateShippingInfo(shp);
             ((DetailsShippingDataController)ControllerManager.get(DetailsShippingDataController.class)).updateShippingInfo(shp);
         }));
 
+        initializePopupMenu();
     }
 
     public TableView<Shipping> getTableView() {
@@ -62,10 +65,10 @@ public class ShippingTableViewController {
         trackingTable.refresh();
     }
 
-    private String getStatusValueAsString(TableColumn.CellDataFeatures<Shipping, String> shipment) {
-        switch(shipment.getValue().getStatus()) {
+    String getStatusValueAsString(Shipping shipping) {
+        switch(shipping.getStatus()) {
             case OK: {
-                return shipment.getValue().getMainData() == null ? "Błąd (2)" : shipment.getValue().getMainData().getDeliveryStatus();
+                return shipping.getMainData() == null ? "Błąd (2)" : shipping.getMainData().getDeliveryStatus();
             }
             case INVALID_SHIPMENT_NUMBER: return "Niepoprawny numer przesyłki";
             case INVALID_DATA_FORMAT: return "Niepoprawny format danych";
@@ -73,14 +76,30 @@ public class ShippingTableViewController {
         return "Błąd (1)";
     }
 
+    private String getStatusValueAsString(TableColumn.CellDataFeatures<Shipping, String> shipment) {
+        return getStatusValueAsString(shipment.getValue());
+    }
+
     private String getLastUpdateTimeAsString(TableColumn.CellDataFeatures<Shipping, String> shipment) {
         LocalDateTime time = shipment.getValue().getLastUpdateTime();
         return time.format(DateTimeFormatter.ofPattern("MM/dd/yyyy  (HH:mm)"));
     }
 
-    private void showPopupMenu() {
-        ContextMenuController contextMenuController = ((ContextMenuController)ControllerManager.get(ContextMenuController.class));
+    private void initializePopupMenu() {
+        trackingTable.setRowFactory(tableView -> {
+            final TableRow<Shipping> row = new TableRow<>();
 
-        contextMenuController.getContextMenu().show(StartFX.getMainScene().getWindow());
+            row.contextMenuProperty().bind(
+                    Bindings.when(Bindings.isNotNull(row.itemProperty()))
+                            .then(getPopupContextMenu())
+                            .otherwise((ContextMenu) null));
+
+            return row;
+        });
+    }
+
+    private ContextMenu getPopupContextMenu() {
+        ContextMenuController contextMenuController = ((ContextMenuController)ControllerManager.get(ContextMenuController.class));
+        return contextMenuController.getContextMenu();
     }
 }

@@ -30,7 +30,7 @@ public class AutomaticRefreshController {
     @FXML
     private void initialize() {
         initializeAutoRefreshTimeSpinner(Math.floorDiv(tracker.getTimeBetweenRefreshes(), 60));
-        initializeCheckFinishedShipmentsCheckBox(tracker.isCheckFinishedShipments());
+        initializeCheckFinishedShipmentsCheckBox(!tracker.isCheckFinishedShipments());
         initializeAutoRefreshCheckBox(tracker.isAutoTrackingEnabled());
         startAutoRefreshTimer();
     }
@@ -47,7 +47,7 @@ public class AutomaticRefreshController {
 
     @FXML
     private void onCheckFinishedShipmentsStatusChange() {
-        tracker.setCheckFinishedShipments(checkIfFinishedCheckBox.isSelected());
+        tracker.setCheckFinishedShipments(!checkIfFinishedCheckBox.isSelected());
     }
 
     private void initializeAutoRefreshTimeSpinner(int initial) {
