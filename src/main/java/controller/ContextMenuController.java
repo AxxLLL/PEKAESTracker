@@ -10,9 +10,6 @@ import javafx.scene.input.ClipboardContent;
 import model.shipment.shp.Shipping;
 import view.ProgramStart;
 
-import java.io.IOException;
-import java.util.Observable;
-
 public class ContextMenuController {
     private ShippingTableViewController tableViewController = ((ShippingTableViewController)ControllerManager.get(ShippingTableViewController.class));
     private Shipping shipping;
