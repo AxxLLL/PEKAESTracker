@@ -104,7 +104,6 @@ public class MainShippingDataController {
         dateOfPostingLabel.setText("Brak");
         deliveryTerminalLabel.setText("Brak");
         deliveryCountryLabel.setText("Brak");
-
     }
 
     private String getStatusMessage(Shipping shipping) {
