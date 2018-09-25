@@ -5,10 +5,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Popup;
 import model.shipment.shp.Shipping;
 import view.ProgramStart;
+import view.StartFX;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -42,9 +45,15 @@ public class ShippingTableViewController {
 
         trackingTable.getSelectionModel().selectedItemProperty().addListener((observable -> {
             Shipping shp = trackingTable.getSelectionModel().getSelectedItem();
+            showPopupMenu();
             ((MainShippingDataController)ControllerManager.get(MainShippingDataController.class)).updateShippingInfo(shp);
             ((DetailsShippingDataController)ControllerManager.get(DetailsShippingDataController.class)).updateShippingInfo(shp);
         }));
+
+    }
+
+    public TableView<Shipping> getTableView() {
+        return this.trackingTable;
     }
 
     public void refreshTable() {
@@ -67,5 +76,11 @@ public class ShippingTableViewController {
     private String getLastUpdateTimeAsString(TableColumn.CellDataFeatures<Shipping, String> shipment) {
         LocalDateTime time = shipment.getValue().getLastUpdateTime();
         return time.format(DateTimeFormatter.ofPattern("MM/dd/yyyy  (HH:mm)"));
+    }
+
+    private void showPopupMenu() {
+        ContextMenuController contextMenuController = ((ContextMenuController)ControllerManager.get(ContextMenuController.class));
+
+        contextMenuController.getContextMenu().show(StartFX.getMainScene().getWindow());
     }
 }
