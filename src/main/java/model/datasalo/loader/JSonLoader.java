@@ -6,6 +6,7 @@ import model.shipment.shp.ShipmentStatus;
 import model.shipment.shp.Shipping;
 import model.shipment.shp.ShippingDetailsData;
 import model.shipment.shp.ShippingMainData;
+import model.tracker.Tracker;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import view.ProgramStart;
@@ -116,10 +117,9 @@ public class JSonLoader implements Loader {
     }
 
     private void getProgramSettings(JSONObject object) {
-        if(!object.isNull("autoUpdate")) ProgramStart.getTracker().disableAutoTracking(object.getBoolean("autoUpdate"));
-        if(!object.isNull("autoUpdateTime")) ProgramStart.getTracker().setTimeBetweenRefreshes(object.getInt("autoUpdateTime"));
-        if(!object.isNull("checkIfFinished")) ProgramStart.getTracker().setCheckIfFinished(object.getBoolean("checkIfFinished"));
+        Tracker tracker = ProgramStart.getTracker();
+        if(!object.isNull("autoUpdate")) tracker.enableAutoTracking(object.getBoolean("autoUpdate"));
+        if(!object.isNull("autoUpdateTime")) tracker.setTimeBetweenRefreshes(Math.floorDiv(object.getInt("autoUpdateTime"), 60));
+        if(!object.isNull("checkIfFinished")) tracker.setCheckFinishedShipments(object.getBoolean("checkIfFinished"));
     }
 }
-
-

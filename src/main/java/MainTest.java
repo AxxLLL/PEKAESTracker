@@ -1,14 +1,3 @@
-import model.datasalo.saver.JSonSaver;
-import model.shipment.shp.ShipmentStatus;
-import model.shipment.shp.Shipping;
-import model.shipment.shp.ShippingMainData;
-import model.shipment.shp.ShippingManager;
-import model.tracker.Tracker;
-
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 public class MainTest {
     public static void main(String[] args) {
 

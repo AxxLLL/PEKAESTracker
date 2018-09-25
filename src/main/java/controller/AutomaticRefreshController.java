@@ -29,9 +29,9 @@ public class AutomaticRefreshController {
 
     @FXML
     private void initialize() {
-        initlalizeAutoRefreshTimeSpinner(Math.floorDiv(tracker.getTimeBetweenRefreshes(), 60));
-        initializeCheckFinishedShipmentsCheckBox(!tracker.isCheckIfFinished());
-        initializeAutoRefreshCheckBox(tracker.getState() == TrackerState.DISABLED);
+        initializeAutoRefreshTimeSpinner(Math.floorDiv(tracker.getTimeBetweenRefreshes(), 60));
+        initializeCheckFinishedShipmentsCheckBox(tracker.isCheckFinishedShipments());
+        initializeAutoRefreshCheckBox(tracker.isAutoTrackingEnabled());
         startAutoRefreshTimer();
     }
 
@@ -42,15 +42,15 @@ public class AutomaticRefreshController {
 
     @FXML
     private void refreshAll() {
-        tracker.forceUpdate();
+        tracker.changeTrackerState(TrackerState.UPDATING);
     }
 
     @FXML
     private void onCheckFinishedShipmentsStatusChange() {
-        tracker.setCheckIfFinished(!checkIfFinishedCheckBox.isSelected());
+        tracker.setCheckFinishedShipments(checkIfFinishedCheckBox.isSelected());
     }
 
-    private void initlalizeAutoRefreshTimeSpinner(int initial) {
+    private void initializeAutoRefreshTimeSpinner(int initial) {
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(MIN_SPINNER_VALUE, MAX_SPINNER_VALUE, initial);
         refreshTime.setValueFactory(valueFactory);
         refreshTime.valueProperty().addListener(e -> spinnerValueChanged());
@@ -75,9 +75,9 @@ public class AutomaticRefreshController {
     }
 
     private void enableAutoRefresh(boolean enable) {
-        refreshTime.setDisable(enable);
-        refreshAllButton.setDisable(enable);
-        tracker.disableAutoTracking(enable);
+        refreshTime.setDisable(!enable);
+        refreshAllButton.setDisable(!enable);
+        tracker.enableAutoTracking(enable);
     }
 
     private void spinnerValueChanged() {
@@ -85,17 +85,17 @@ public class AutomaticRefreshController {
     }
 
     private void updateTimerText() {
-        switch(ProgramStart.getTracker().getState()) {
+        switch(tracker.getTrackerState()) {
             case DISABLED:
                 refreshTimerLabel.setText("Automatyczne odświeżanie wyłączone");
                 break;
             case UPDATING:
                 refreshAllButton.setDisable(true);
-                refreshTimerLabel.setText(String.format("Trwa odświeżanie (%d / %d)", ProgramStart.getTracker().getCheckedSize(), ProgramStart.getManager().size()));
+                refreshTimerLabel.setText(String.format("Trwa odświeżanie (%d / %d)", tracker.getCheckedListSize(), ProgramStart.getManager().size()));
                 ((ShippingTableViewController)ControllerManager.get(ShippingTableViewController.class)).refreshTable();
                 break;
             default: {
-                int restTime = ProgramStart.getTracker().getRestTime();
+                int restTime = tracker.getTimeToNextUpdate();
                 refreshAllButton.setDisable(false);
                 refreshTimerLabel.setText(String.format("Odświeżenie za %d minut %d sekund", Math.floorDiv(restTime, 60), restTime % 60));
                 break;

@@ -1,6 +1,5 @@
 package view;
 
-import controller.AutomaticRefreshController;
 import controller.InputFormController;
 import controller.ShippingTableViewController;
 import controller.manager.ControllerManager;

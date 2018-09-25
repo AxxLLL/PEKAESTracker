@@ -124,6 +124,6 @@ public class JSonSaver implements Saver {
 
     private String getProgramSettings() {
         Tracker tracker = ProgramStart.getTracker();
-        return String.format("\"autoUpdate\":%b, \"autoUpdateTime\":%d, \"checkIfFinished\":%b", tracker.getState() != TrackerState.DISABLED, tracker.getTimeBetweenRefreshes(), tracker.isCheckIfFinished());
+        return String.format("\"autoUpdate\":%b, \"autoUpdateTime\":%d, \"checkIfFinished\":%b", tracker.isAutoTrackingEnabled(), tracker.getTimeBetweenRefreshes(), tracker.isCheckFinishedShipments());
     }
 }
