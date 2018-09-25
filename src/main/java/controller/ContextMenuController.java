@@ -1,13 +1,17 @@
 package controller;
 
 import controller.manager.ControllerManager;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ContextMenu;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import model.shipment.shp.Shipping;
 import view.ProgramStart;
+
+import java.io.IOException;
+import java.util.Observable;
 
 public class ContextMenuController {
     private ShippingTableViewController tableViewController = ((ShippingTableViewController)ControllerManager.get(ShippingTableViewController.class));
@@ -26,7 +30,7 @@ public class ContextMenuController {
     @FXML
     void onShown() {
         shipping = getSelectedItem();
-        resetCheckboxes();
+        selectAllCheckBoxes(false);
     }
 
     @FXML
@@ -56,6 +60,16 @@ public class ContextMenuController {
         ((DetailsShippingDataController)ControllerManager.get(DetailsShippingDataController.class)).clearTableData();
     }
 
+    @FXML
+    private void selectAllItems() {
+        selectAllCheckBoxes(true);
+    }
+
+    @FXML
+    private void unselectAllItems() {
+        selectAllCheckBoxes(false);
+    }
+
     public ContextMenu getContextMenu() {
         return this.contextMenu;
     }
@@ -73,20 +87,29 @@ public class ContextMenuController {
 
     private boolean isSelectedMoreThanOneItem() {
         int counter = 0;
-        if(shippingNumberCheckBox.isSelected()) counter ++;
-        if(titleCheckBox.isSelected()) counter ++;
-        if(statusCheckBox.isSelected()) counter ++;
-        if(mainShipmentDataCheckBox.isSelected()) counter ++;
-        if(detailsShipmentDataCheckBox.isSelected()) counter ++;
+        ObservableList<MenuItem> menuItems = ((Menu)contextMenu.getItems().get(0)).getItems();
+        Node customMenuItem;
+        for(MenuItem item : menuItems) {
+            try {
+                customMenuItem = ((CustomMenuItem) item).getContent();
+                if (customMenuItem != null && customMenuItem.getTypeSelector().equals("CheckBox")) {
+                    if(((CheckBox)customMenuItem).isSelected()) counter ++;
+                }
+            } catch(Exception ignore) {}
+        }
         return counter > 1;
     }
 
-    private void resetCheckboxes() {
-        shippingNumberCheckBox.setSelected(false);
-        titleCheckBox.setSelected(false);
-        statusCheckBox.setSelected(false);
-        mainShipmentDataCheckBox.setSelected(false);
-        detailsShipmentDataCheckBox.setSelected(false);
+    private void selectAllCheckBoxes(final boolean select) {
+        ObservableList<MenuItem> menuItems = ((Menu)contextMenu.getItems().get(0)).getItems();
+        menuItems.forEach(item -> {
+            try {
+                Node customMenuItem = ((CustomMenuItem) item).getContent();
+                if (customMenuItem != null && customMenuItem.getTypeSelector().equals("CheckBox")) {
+                    ((CheckBox)customMenuItem).setSelected(select);
+                }
+            } catch(Exception ignore) {}
+        });
     }
 
     private String prepareShipmentNumberToCopy() {
