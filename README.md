@@ -1,4 +1,4 @@
-# PEKAESTracker
+# PEKAES Tracker
 ##### Ver. 1.0.0 (25/09/2018)
 
 Program do śledzenia przesyłek kurierskich firmy PEKAES.  
