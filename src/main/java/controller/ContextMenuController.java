@@ -8,7 +8,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import model.shipment.shp.Shipping;
+import view.DialogMessage;
 import view.ProgramStart;
+
+import java.util.Optional;
 
 public class ContextMenuController {
     private ShippingTableViewController tableViewController = ((ShippingTableViewController)ControllerManager.get(ShippingTableViewController.class));
@@ -51,10 +54,13 @@ public class ContextMenuController {
 
     @FXML
     private void deleteShipmentFromList() {
-        ProgramStart.getManager().remove(shipping);
-        tableViewController.refreshTable();
-        ((MainShippingDataController)ControllerManager.get(MainShippingDataController.class)).setMainDataToDefault();
-        ((DetailsShippingDataController)ControllerManager.get(DetailsShippingDataController.class)).clearTableData();
+        Optional<ButtonType> response = DialogMessage.showConfirmDialog("Usunięcie przesyłki", "Czy na pewno chcesz usunąć przesyłkę o numerze " + shipping.getShippingNumber() + " z listy?");
+        if (response.get() == ButtonType.OK) {
+            ProgramStart.getManager().remove(shipping);
+            tableViewController.refreshTable();
+            ((MainShippingDataController) ControllerManager.get(MainShippingDataController.class)).setMainDataToDefault();
+            ((DetailsShippingDataController) ControllerManager.get(DetailsShippingDataController.class)).clearTableData();
+        }
     }
 
     @FXML

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.shipment.shp.ShipmentStatus;
 import model.shipment.shp.Shipping;
+import view.DialogMessage;
 import view.ProgramStart;
 
 import java.util.Timer;
@@ -33,7 +34,15 @@ public class InputFormController {
         } else {
             try {
                 Shipping shp = new Shipping(shNumber, title);
-                if(shp.getStatus() == ShipmentStatus.INVALID_SHIPMENT_NUMBER) {
+                if(shp.getStatus() == ShipmentStatus.INVALID_DATA_FORMAT) {
+                    String message = "" +
+                            "Wystąpił błąd w połączeniu z serwerem PEKAES!" + System.lineSeparator() +
+                            "Serwer odrzucił połączenie, jest wyłączony lub zmieniła się" + System.lineSeparator() +
+                            "struktura odpowiedzi." + System.lineSeparator() +
+                            "Stan serwera można sprawdzić pod adresem:" + System.lineSeparator() +
+                            "www.pekaes.pl/pl/dla-klienta.html";
+                    DialogMessage.showErrorMessage("Błąd odpwiedzi", message);
+                } else if(shp.getStatus() == ShipmentStatus.INVALID_SHIPMENT_NUMBER) {
                     showErrorMessage("Nieodnaleziono przesyłki o podanym numerze na stronie przewoźnika");
                 } else {
                     ProgramStart.getManager().add(shp);

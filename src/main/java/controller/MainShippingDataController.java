@@ -2,14 +2,17 @@ package controller;
 
 import controller.manager.ControllerManager;
 import javafx.fxml.FXML;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import model.shipment.shp.Shipping;
 import model.shipment.shp.ShippingMainData;
+import view.DialogMessage;
 import view.ProgramStart;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 public class MainShippingDataController {
 
@@ -46,9 +49,12 @@ public class MainShippingDataController {
     @FXML
     private void deleteShipmentData() {
         if(shipping != null) {
-            ProgramStart.getManager().remove(shipping);
-            setMainDataToDefault();
-            ((ShippingTableViewController)ControllerManager.get(ShippingTableViewController.class)).refreshTable();
+            Optional<ButtonType> response = DialogMessage.showConfirmDialog("Usunięcie przesyłki", "Czy na pewno chcesz usunąć przesyłkę o numerze " + shipping.getShippingNumber() + " z listy?");
+            if (response.get() == ButtonType.OK) {
+                ProgramStart.getManager().remove(shipping);
+                setMainDataToDefault();
+                ((ShippingTableViewController) ControllerManager.get(ShippingTableViewController.class)).refreshTable();
+            }
         }
     }
 
