@@ -1,6 +1,7 @@
 package controller;
 
 import controller.manager.ControllerManager;
+import controller.utils.ClipboardUtil;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -43,7 +44,7 @@ public class ContextMenuController {
         if(mainShipmentDataCheckBox.isSelected()) sb.append(prepareMainShipmentDataToCopy());
         if(detailsShipmentDataCheckBox.isSelected()) sb.append(prepareDetailsShipmentDataToCopy());
 
-        if(sb.length() > 0) putElementToClipboard(sb.toString());
+        if(sb.length() > 0) ClipboardUtil.get().put(sb.toString());
     }
 
     @FXML
@@ -75,13 +76,6 @@ public class ContextMenuController {
 
     public ContextMenu getContextMenu() {
         return this.contextMenu;
-    }
-
-    private void putElementToClipboard(String string) {
-        Clipboard clipboard = Clipboard.getSystemClipboard();
-        ClipboardContent clipboardContent = new ClipboardContent();
-        clipboardContent.putString(string);
-        clipboard.setContent(clipboardContent);
     }
 
     private Shipping getSelectedItem() {

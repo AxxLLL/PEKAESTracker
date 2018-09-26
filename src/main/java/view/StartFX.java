@@ -1,5 +1,6 @@
 package view;
 
+import controller.utils.KeyShortcut;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -17,6 +18,7 @@ public class StartFX {
         primaryStage.show();
         loadPopupMenuFXML();
         loadCSS();
+        KeyShortcut.create(mainScene);
     }
 
     public static Scene getMainScene() {
