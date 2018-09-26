@@ -1,12 +1,17 @@
 package model.datasalo.saver;
 
 import com.google.common.base.Preconditions;
+import model.datasalo.SaverResolver;
+import model.datasalo.Settings;
+import model.datasalo.SettingsList;
 import model.datasalo.syspath.SystemPath;
 import model.shipment.shp.ShipmentStatus;
 import model.shipment.shp.Shipping;
 import model.shipment.shp.ShippingDetailsData;
 import model.shipment.shp.ShippingMainData;
 import model.tracker.Tracker;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import view.ProgramStart;
 
 import java.io.IOException;
@@ -14,10 +19,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 
-public class JSonSaver implements Saver {
+public class JSonSaver implements Saver, SaverResolver {
 
     private final Path pathToFile;
+    private JSONObject jsonObject = new JSONObject();
 
     public JSonSaver(String fileName) throws IOException {
         Preconditions.checkNotNull(fileName, "Nazwa pliku do zapisu musi zostać określona");
@@ -125,4 +132,29 @@ public class JSonSaver implements Saver {
         Tracker tracker = ProgramStart.getTracker();
         return String.format("\"autoUpdate\":%b, \"autoUpdateTime\":%d, \"checkIfFinished\":%b", tracker.isAutoTrackingEnabled(), tracker.getTimeBetweenRefreshes(), tracker.isCheckFinishedShipments());
     }
+
+    @Override
+    public void saveSettings(List<Settings> settings,  List<SettingsList> settingsLists) {
+        JSONObject jsonObject = this.jsonObject;
+        for(Settings setting : settings) {
+            for(Map.Entry<String, String> mapOfSettings : setting.getSettingsValues().entrySet()) {
+                jsonObject.put(mapOfSettings.getKey(), mapOfSettings.getValue());
+            }
+        }
+
+        for(SettingsList setting : settingsLists) {
+            JSONArray jsonArray = new JSONArray();
+            for(Map<String, String> mapWithValues : setting.getSettingsListValues()) {
+                jsonArray.put(mapWithValues);
+            }
+            jsonObject.put(setting.getMainKey(), jsonArray);
+        }
+
+        try {
+            Files.write(pathToFile, jsonObject.toString().getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

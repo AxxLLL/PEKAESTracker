@@ -33,6 +33,7 @@ public class KeyShortcut {
                     Shipping shp = tableView.getSelectionModel().getSelectedItem();
                     ClipboardUtil.get().put(shp.getShippingNumber());
                 }
+                event.consume();
             }
         });
     }

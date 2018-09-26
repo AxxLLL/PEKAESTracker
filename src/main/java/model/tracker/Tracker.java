@@ -3,24 +3,29 @@ package model.tracker;
 import com.google.common.base.Preconditions;
 import lombok.Getter;
 import lombok.Setter;
+import model.datasalo.Settings;
 import model.shipment.shp.ShipmentStatus;
 import model.shipment.shp.Shipping;
 import model.shipment.shp.ShippingManager;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class Tracker implements Runnable {
+public class Tracker implements Runnable, Settings {
     private static final int TIME_WAIT_BEFORE_NEXT_SHIPMENT_CHECK = 2; // in seconds
 
     private Thread thread;
     private ShippingManager shippingManager;
     private List<Shipping> checkedShipments = new ArrayList<>();
     private boolean active;
-    @Getter private TrackerState trackerState = TrackerState.WAITING_FOR_UPDATE;
-    @Getter private int timeToNextUpdate = 10;
-    @Getter private int timeBetweenRefreshes = 300; //in seconds - 5 min
-    @Getter @Setter private boolean checkFinishedShipments = false;
+    @Getter
+    private TrackerState trackerState = TrackerState.WAITING_FOR_UPDATE;
+    @Getter
+    private int timeToNextUpdate = 10;
+    @Getter
+    private int timeBetweenRefreshes = 300; //in seconds - 5 min
+    @Getter
+    @Setter
+    private boolean checkFinishedShipments = false;
 
     public Tracker(ShippingManager manager) {
         Preconditions.checkNotNull(manager);
@@ -32,12 +37,13 @@ public class Tracker implements Runnable {
 
     @Override
     public void run() {
-        while(active) {
+        while (active) {
             try {
                 //System.out.println("Status: " + state + " | Rest time: " + restTime);
                 int timeForNextUpdateMS = !isUpdateTime() ? 1000 : (continueUpdate() * 1000);
-                if(timeForNextUpdateMS != 0) Thread.sleep(timeForNextUpdateMS);
-            } catch (InterruptedException ignored) { }
+                if (timeForNextUpdateMS != 0) Thread.sleep(timeForNextUpdateMS);
+            } catch (InterruptedException ignored) {
+            }
         }
     }
 
@@ -49,8 +55,8 @@ public class Tracker implements Runnable {
 
     public boolean changeTrackerState(TrackerState newState) {
         Preconditions.checkNotNull(newState);
-        if(newState == trackerState) return false;
-        switch(newState) {
+        if (newState == trackerState) return false;
+        switch (newState) {
             case UPDATING:
                 prepareBeforeUpdate();
                 break;
@@ -82,13 +88,35 @@ public class Tracker implements Runnable {
     }
 
     public void setTimeBetweenRefreshes(int minutes) {
-        if(minutes > 0) timeBetweenRefreshes = minutes * 60;
+        if (minutes > 0) timeBetweenRefreshes = minutes * 60;
+    }
+
+    @Override
+    public List<String> getKeys() {
+        return new ArrayList<>(Arrays.asList("autoUpdate", "autoUpdateTime", "checkIfFinished"));
+    }
+
+    @Override
+    public Map<String, String> getSettingsValues() {
+        Map<String, String> settings = new HashMap<>();
+        settings.put("autoUpdate", String.valueOf(isAutoTrackingEnabled()));
+        settings.put("autoUpdateTime", String.valueOf(getTimeBetweenRefreshes()));
+        settings.put("checkIfFinished", String.valueOf(isCheckFinishedShipments()));
+        return settings;
+    }
+
+    @Override
+    public void setSettingsValues(Map<String, String> settings) {
+        Preconditions.checkNotNull(settings);
+        enableAutoTracking(Boolean.valueOf(settings.get("autoUpdate")));
+        setTimeBetweenRefreshes(Integer.valueOf(settings.get("autoUpdate")));
+        setCheckFinishedShipments(Boolean.valueOf(settings.get("checkIfFinished")));
     }
 
     private boolean updateShipmentData(Shipping shp, boolean force) {
-        if(shp.getStatus() == ShipmentStatus.INVALID_SHIPMENT_NUMBER) return false;
-        if(!checkFinishedShipments && !force) {
-            if(shp.getStatus() == ShipmentStatus.OK && shp.getMainData().getDeliveryStatus().equals("przesyłka doręczona")) {
+        if (shp.getStatus() == ShipmentStatus.INVALID_SHIPMENT_NUMBER) return false;
+        if (!checkFinishedShipments && !force) {
+            if (shp.getStatus() == ShipmentStatus.OK && shp.getMainData().getDeliveryStatus().equals("przesyłka doręczona")) {
                 return false;
             }
         }
@@ -97,7 +125,7 @@ public class Tracker implements Runnable {
     }
 
     private boolean isUpdateTime() {
-        if(trackerState == TrackerState.WAITING_FOR_UPDATE) {
+        if (trackerState == TrackerState.WAITING_FOR_UPDATE) {
             if ((--timeToNextUpdate) <= 0) return changeTrackerState(TrackerState.UPDATING);
         }
         return (trackerState == TrackerState.UPDATING);
@@ -109,8 +137,8 @@ public class Tracker implements Runnable {
         notCheckedShipments.removeAll(checkedShipments);
         Shipping shp = notCheckedShipments.isEmpty() ? null : notCheckedShipments.get(0);
 
-        if(shp != null) {
-            if(!updateShipmentData(shp, false)) timeToNextUpdate = 0;
+        if (shp != null) {
+            if (!updateShipmentData(shp, false)) timeToNextUpdate = 0;
             checkedShipments.add(shp);
             notCheckedShipments.remove(shp);
         } else changeTrackerState(TrackerState.WAITING_FOR_UPDATE);
