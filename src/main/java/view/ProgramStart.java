@@ -28,7 +28,6 @@ public class ProgramStart extends Application {
     public void start(Stage primaryStage) throws IOException {
         tracker = new Tracker(shippingManager);
         SaveLoad loader = new SaveLoad();
-        loader.addToObservedSettings(tracker);
         loader.loadData(shippingManager);
         StartFX.start(primaryStage);
 

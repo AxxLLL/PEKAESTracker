@@ -17,4 +17,5 @@ public class ShippingDetailsData {
         sb.append("Status: ").append(packageStatus);
         return sb.toString();
     }
+
 }

@@ -1,16 +1,12 @@
 package model.datasalo.loader;
 
 import com.google.common.base.Preconditions;
-import model.datasalo.LoaderResolver;
-import model.datasalo.Settings;
-import model.datasalo.SettingsList;
 import model.datasalo.syspath.SystemPath;
 import model.shipment.shp.ShipmentStatus;
 import model.shipment.shp.Shipping;
 import model.shipment.shp.ShippingDetailsData;
 import model.shipment.shp.ShippingMainData;
 import model.tracker.Tracker;
-import org.assertj.core.data.MapEntry;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import view.ProgramStart;
@@ -21,14 +17,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class JSonLoader implements Loader, LoaderResolver {
+public class JSonLoader implements Loader {
 
     private final Path pathToFile;
-    private JSONObject jsonObject;
 
     public JSonLoader(String fileName) {
         Preconditions.checkNotNull(fileName, "Nazwa pliku musi zostać określona");
@@ -43,7 +36,7 @@ public class JSonLoader implements Loader, LoaderResolver {
         try {
             String reader = readFileAsString(pathToFile);
             if(reader.startsWith("{") && reader.endsWith("}")) {
-                jsonObject = new JSONObject(reader);
+                JSONObject jsonObject = new JSONObject(reader);
                 getProgramSettings(jsonObject);
                 JSONArray mainObject = jsonObject.getJSONArray("shipmentData");
                 for (int i = 0; i < mainObject.length(); i++) {
@@ -130,45 +123,4 @@ public class JSonLoader implements Loader, LoaderResolver {
         if(!object.isNull("checkIfFinished")) tracker.setCheckFinishedShipments(object.getBoolean("checkIfFinished"));
     }
 
-    @Override
-    public void loadSettings(List<Settings> settings) {
-        JSONObject jsonObject = this.jsonObject;
-
-        if(settings.isEmpty()) return;
-        for(Settings setting : settings) {
-            Map<String, String> mapOfSettings = new HashMap<>();
-            for(String settingName : setting.getKeys()) {
-                if(!jsonObject.isNull(settingName)) {
-                    mapOfSettings.put(settingName, String.valueOf(jsonObject.get(settingName)));
-                }
-            }
-            setting.setSettingsValues(mapOfSettings);
-        }
-
-    }
-
-    @Override
-    public void loadSettingsLists(List<SettingsList> settings) {
-        JSONObject jsonObject = this.jsonObject;
-
-        if(settings.isEmpty()) return;
-        for(SettingsList setting : settings) {
-            String mainKey = setting.getMainKey();
-            List<Map<String, String>> listOfSettings = new ArrayList<>();
-            if(jsonObject.isNull(mainKey)) continue;
-            JSONArray jsonArray = jsonObject.getJSONArray(mainKey);
-            if(!jsonArray.isEmpty()) {
-                for(int i = 0; i < jsonArray.length(); i ++) {
-                    JSONObject object = jsonArray.getJSONObject(i);
-                    HashMap<String, String> mapWithSettings = new HashMap<>();
-                    for(String settingName : setting.getKeys()) {
-                        if(!object.isNull(settingName)) mapWithSettings.put(settingName, String.valueOf(object.get(settingName)));
-                    }
-                    if(!mapWithSettings.isEmpty()) listOfSettings.add(mapWithSettings);
-                }
-            }
-            if(!listOfSettings.isEmpty()) setting.setSettingsValues(listOfSettings);
-        }
-
-    }
 }

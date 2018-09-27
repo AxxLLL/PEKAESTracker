@@ -2,8 +2,7 @@ package model.shipment.shp;
 
 import com.google.common.base.Preconditions;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ShippingManager {
@@ -65,4 +64,5 @@ public class ShippingManager {
     private boolean isShippingNumberAtList(String shNumber) {
         return listOfShipping.stream().anyMatch(line -> line.getShippingNumber().equals(shNumber));
     }
+
 }

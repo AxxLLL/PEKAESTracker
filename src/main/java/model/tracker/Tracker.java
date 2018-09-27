@@ -3,14 +3,13 @@ package model.tracker;
 import com.google.common.base.Preconditions;
 import lombok.Getter;
 import lombok.Setter;
-import model.datasalo.Settings;
 import model.shipment.shp.ShipmentStatus;
 import model.shipment.shp.Shipping;
 import model.shipment.shp.ShippingManager;
 
 import java.util.*;
 
-public class Tracker implements Runnable, Settings {
+public class Tracker implements Runnable {
     private static final int TIME_WAIT_BEFORE_NEXT_SHIPMENT_CHECK = 2; // in seconds
 
     private Thread thread;
@@ -89,28 +88,6 @@ public class Tracker implements Runnable, Settings {
 
     public void setTimeBetweenRefreshes(int minutes) {
         if (minutes > 0) timeBetweenRefreshes = minutes * 60;
-    }
-
-    @Override
-    public List<String> getKeys() {
-        return new ArrayList<>(Arrays.asList("autoUpdate", "autoUpdateTime", "checkIfFinished"));
-    }
-
-    @Override
-    public Map<String, String> getSettingsValues() {
-        Map<String, String> settings = new HashMap<>();
-        settings.put("autoUpdate", String.valueOf(isAutoTrackingEnabled()));
-        settings.put("autoUpdateTime", String.valueOf(getTimeBetweenRefreshes()));
-        settings.put("checkIfFinished", String.valueOf(isCheckFinishedShipments()));
-        return settings;
-    }
-
-    @Override
-    public void setSettingsValues(Map<String, String> settings) {
-        Preconditions.checkNotNull(settings);
-        enableAutoTracking(Boolean.valueOf(settings.get("autoUpdate")));
-        setTimeBetweenRefreshes(Integer.valueOf(settings.get("autoUpdate")));
-        setCheckFinishedShipments(Boolean.valueOf(settings.get("checkIfFinished")));
     }
 
     private boolean updateShipmentData(Shipping shp, boolean force) {

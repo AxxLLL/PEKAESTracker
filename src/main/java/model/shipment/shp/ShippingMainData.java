@@ -3,6 +3,10 @@ package model.shipment.shp;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 @AllArgsConstructor
 public class ShippingMainData {
     @Getter private final String shippingNumber;
@@ -31,4 +35,5 @@ public class ShippingMainData {
         sb.append("Miejsce dostarczenia: ").append(deliveryPlace);
         return sb.toString();
     }
+
 }
